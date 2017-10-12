@@ -7,8 +7,12 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
+
+  <%= render "layouts/navbar" %>
+
+  <div id="container">
     <%= yield %>
+  </div>
   </body>
 </html>
