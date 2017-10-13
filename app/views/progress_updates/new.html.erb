@@ -2,28 +2,36 @@
 <h2>New Progress Update for "<%= @project.title %>"</h2>
 <br>
 <%= form_for [@project,@update] do |f| %>
+
+  <h3>How's it going?</h3>
   <div class="form-group">
-    <%= f.label :content %>
-    <%= f.text_area :content, class: "form-control"  %>
-  </div>  
+    <%= f.text_area :content, class: "form-control", rows: 6  %>
+  </div>
 
-  <div class="form-group">
-      <%= f.label :words, "Words count" %>
-      <%= f.text_field :content, class: "form-control"  %>
+  <h3>Record your progress:</h3>
+    <div class="row">
+      <div class="col-lg-6">
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon" id="words-label">Words</span>      
+              <input type="text" class="form-control" aria-label="Words" aria-describedby="words-label">
+            </div>
+            <%= radio_button_tag(:word_format, "new") %>
+            <%= label_tag(:word_format_new, "New words added") %><br>
+            <%= radio_button_tag(:word_format, "total") %>
+            <%= label_tag(:word_format_total, "Total project words") %>
+            </div>              
+      </div>
+      <div class="col-lg-6">
+          <div class="form-group">
+              <div class="input-group">
+                  <span class="input-group-addon" id="hours-label">Hours</span>      
+                  <input type="text" class="form-control" aria-label="Hours" aria-describedby="hours-label">
+              </div>
+          </div>        
+      </div>
+    </div>
 
-      <%= radio_button_tag(:word_format, "new") %>
-      <%= label_tag(:word_format_new, "New words added") %>
-      <%= radio_button_tag(:word_format, "total") %>
-      <%= label_tag(:word_format_total, "Total project words") %>
-
-    </div>  
-
-    
-    <div class="form-group">
-        <%= f.label :hours, "Hours spent" %>
-        <%= f.text_field :content, class: "form-control"  %>
-    </div>  
-    
     <%= f.submit "Submit Update", class: "btn btn-primary" %>
 
 <% end %>
