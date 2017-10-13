@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyText
+  date: 2017-10-12 17:13:01
+  words: 1
+  hours: 1.5
+  project_id: 1
+  user_id: 1
+
+two:
+  content: MyText
+  date: 2017-10-12 17:13:01
+  words: 1
+  hours: 1.5
+  project_id: 1
+  user_id: 1
