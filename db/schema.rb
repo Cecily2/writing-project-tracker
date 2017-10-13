@@ -10,7 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171012214418) do
+ActiveRecord::Schema.define(version: 20171013001611) do
+
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.datetime "date"
+    t.integer "user_id"
+    t.integer "update_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "cover_art"
+    t.integer "word_goal"
+    t.integer "words"
+    t.integer "time"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "updates", force: :cascade do |t|
+    t.text "content"
+    t.datetime "date"
+    t.integer "words"
+    t.float "hours"
+    t.integer "project_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username", default: "", null: false
