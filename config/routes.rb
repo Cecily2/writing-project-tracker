@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :comments
-  resources :updates
+  resources :progress_updates
   resources :projects
 
 
