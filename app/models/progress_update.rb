@@ -1,4 +1,4 @@
-class Update < ApplicationRecord
+class ProgressUpdate < ApplicationRecord
   belongs_to :project
   belongs_to :user
   

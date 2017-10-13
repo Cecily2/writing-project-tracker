@@ -1,6 +1,6 @@
-class CreateUpdates < ActiveRecord::Migration[5.1]
+class CreateProgressUpdates < ActiveRecord::Migration[5.1]
   def change
-    create_table :updates do |t|
+    create_table :progress_updates do |t|
       t.text :content
       t.datetime :date
       t.integer :words
