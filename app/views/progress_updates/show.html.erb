@@ -9,3 +9,7 @@
 <%= @update.hours %> hours worked<br><br>
 
 For project: <%= link_to @update.project.title, project_path(@update.project) %> <br><br>
+
+<h2>Comments</h2>
+
+<%= render @update.comments.all %>
