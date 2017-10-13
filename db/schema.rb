@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(version: 20171013001611) do
     t.text "description"
     t.string "cover_art"
     t.integer "word_goal"
-    t.integer "words"
-    t.integer "time"
+    t.integer "words", default: 0
+    t.integer "time", default: 0
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
