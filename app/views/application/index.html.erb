@@ -2,6 +2,7 @@
 
 <% @updates.each do |u| %>
   <div class="box">
+    <strong><%= u.user.username %></strong> - <%= u.date %><br><br>
     <%= u.content %>
   </div>
 <% end %>
