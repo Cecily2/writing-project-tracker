@@ -1,4 +1,5 @@
 <div class="box">
-    <strong><%= progress_update.user.username %></strong> - <%= progress_update.date %><br><br>
+    <strong><%= link_to progress_update.user.username, user_path(progress_update.user) %></strong> - <%= progress_update.date %><br>
+    <%= link_to progress_update.project.title, project_path(progress_update.project) %><br><br>
     <%= progress_update.content %>
 </div>
