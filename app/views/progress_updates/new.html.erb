@@ -14,7 +14,7 @@
           <div class="form-group">
             <div class="input-group">
               <span class="input-group-addon" id="words-label">Words</span>      
-              <input type="text" class="form-control" aria-label="Words" aria-describedby="words-label">
+              <%= f.text_field :words, class: "form-control" %>
             </div>
             <%= radio_button_tag(:word_format, "new") %>
             <%= label_tag(:word_format_new, "New words added") %><br>
@@ -26,7 +26,7 @@
           <div class="form-group">
               <div class="input-group">
                   <span class="input-group-addon" id="hours-label">Hours</span>      
-                  <input type="text" class="form-control" aria-label="Hours" aria-describedby="hours-label">
+                  <%= f.text_field :hours, class: "form-control" %>
               </div>
           </div>        
       </div>
