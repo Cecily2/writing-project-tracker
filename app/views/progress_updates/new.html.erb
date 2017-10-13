@@ -1,0 +1,29 @@
+
+<h2>New Progress Update for "<%= @project.title %>"</h2>
+<br>
+<%= form_for [@project,@update] do |f| %>
+  <div class="form-group">
+    <%= f.label :content %>
+    <%= f.text_area :content, class: "form-control"  %>
+  </div>  
+
+  <div class="form-group">
+      <%= f.label :words, "Words count" %>
+      <%= f.text_field :content, class: "form-control"  %>
+
+      <%= radio_button_tag(:word_format, "new") %>
+      <%= label_tag(:word_format_new, "New words added") %>
+      <%= radio_button_tag(:word_format, "total") %>
+      <%= label_tag(:word_format_total, "Total project words") %>
+
+    </div>  
+
+    
+    <div class="form-group">
+        <%= f.label :hours, "Hours spent" %>
+        <%= f.text_field :content, class: "form-control"  %>
+    </div>  
+    
+    <%= f.submit "Submit Update", class: "btn btn-primary" %>
+
+<% end %>
