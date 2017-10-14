@@ -5,6 +5,10 @@ class ProgressUpdatesController < ApplicationController
     @update = ProgressUpdate.find(params[:id])
   end
 
+  def index
+    @updates = ProgressUpdate.all.where(project_id: params[:project_id])
+  end
+
   def new
     if current_user
       @project = Project.find(params[:project_id])
