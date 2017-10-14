@@ -15,11 +15,11 @@ class ProgressUpdate < ApplicationRecord
       words_added = update.project.words - params[:words].to_i
     end
 
-
     update.project.hours += params[:hours].to_f
     update.content = params[:content]
     update.words = words_added
     update.hours = params[:hours].to_f
+    update.date = Time.now
     update
   end
 end
