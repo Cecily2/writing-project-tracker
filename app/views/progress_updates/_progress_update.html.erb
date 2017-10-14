@@ -1,3 +1,9 @@
+
+<% if progress_update.user.avatar.url.present? %>  
+    <%= image_tag(progress_update.user.avatar.thumb.url, :class => "avatar-small") %>
+<% end %>
+
+
 <div class="box">
     <strong><%= link_to progress_update.user.username, user_path(progress_update.user) %></strong> - <%= progress_update.date %><br>
     <%= link_to progress_update.project.title, project_path(progress_update.project) %><br><br>
