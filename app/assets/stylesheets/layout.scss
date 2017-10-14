@@ -34,10 +34,22 @@ body {
   }
 }
 
+.update-info {
+  height: 45px;  
+}
+
+.update-info-text {
+  line-height: 1.1;
+  vertical-align: middle;
+}
+
 .avatar-small {
   border-radius: 50%;
   width: 40px;
   height: 40px;
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 .avatar-normal {
