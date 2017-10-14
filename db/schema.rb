@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20171013001611) do
     t.string "cover_art"
     t.integer "word_goal"
     t.integer "words", default: 0
-    t.integer "time", default: 0
+    t.float "hours", default: 0.0
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
