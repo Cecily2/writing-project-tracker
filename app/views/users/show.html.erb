@@ -1,5 +1,9 @@
 <h1><%= @user.username %></h1>
 
+<% if @user.avatar.url.present? %>  
+<%= image_tag(@user.avatar.normal.url, :class => "avatar-normal") %>
+<% end %>
+
 <p>About This User: [...]</p>
 <p>Gender: [...]</p>
 <p>User Statistics: [...]</p>
