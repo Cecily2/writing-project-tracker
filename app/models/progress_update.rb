@@ -19,7 +19,6 @@ class ProgressUpdate < ApplicationRecord
     update.content = params[:content]
     update.words = words_added
     update.hours = params[:hours].to_f
-    update.date = Time.now
     update
   end
 end
