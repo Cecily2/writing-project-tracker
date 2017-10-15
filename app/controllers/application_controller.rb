@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   
   def index
-    @updates = ProgressUpdate.all
+    @updates = ProgressUpdate.order("created_at DESC")
   end
 
   
