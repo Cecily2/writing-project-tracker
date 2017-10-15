@@ -2,7 +2,6 @@ class CreateProgressUpdates < ActiveRecord::Migration[5.1]
   def change
     create_table :progress_updates do |t|
       t.text :content
-      t.datetime :date
       t.integer :words
       t.float :hours
       t.integer :project_id

@@ -10,11 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171014213349) do
+ActiveRecord::Schema.define(version: 20171015014458) do
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
-    t.datetime "date"
     t.integer "user_id"
     t.integer "progress_update_id"
     t.datetime "created_at", null: false
@@ -29,7 +28,6 @@ ActiveRecord::Schema.define(version: 20171014213349) do
 
   create_table "progress_updates", force: :cascade do |t|
     t.text "content"
-    t.datetime "date"
     t.integer "words"
     t.float "hours"
     t.integer "project_id"
@@ -48,7 +46,6 @@ ActiveRecord::Schema.define(version: 20171014213349) do
   create_table "projects", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.string "cover_art"
     t.integer "word_goal"
     t.integer "words", default: 0
     t.float "hours", default: 0.0
@@ -78,12 +75,15 @@ ActiveRecord::Schema.define(version: 20171014213349) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "about"
-    t.string "picture"
     t.string "gender"
-    t.string "username"
+    t.string "name"
     t.string "avatar"
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["provider"], name: "index_users_on_provider"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["uid"], name: "index_users_on_uid"
   end
 
 end
