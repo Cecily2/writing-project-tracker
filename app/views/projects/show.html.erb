@@ -1,7 +1,7 @@
 <h1><%= @project.title %></h1>
 
 <%= @project.description %><br><br>
-Created by <%= link_to @project.user.username, user_path(@project.user) %><br>
+Created by <%= link_to @project.user.name, user_path(@project.user) %><br>
 Word Goal: <%= @project.word_goal %><br>
 Current Words: <%= @project.words %><br>
 Time Spent: <%= @project.hours %> <br><br>

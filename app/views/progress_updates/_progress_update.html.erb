@@ -5,7 +5,7 @@
 
 <div class="update-info">
     <span class="update-info-text">
-        <strong><%= link_to progress_update.user.username, user_path(progress_update.user) %></strong>
+        <strong><%= link_to progress_update.user.name, user_path(progress_update.user) %></strong>
         posted an update for their project <%= link_to progress_update.project.title, project_path(progress_update.project) %>
     </span>        
 </div>
