@@ -13,4 +13,16 @@ class Project < ApplicationRecord
     end
   end
 
+  def percent_complete
+    self.words.to_f / self.word_goal.to_f * 100
+  end
+
+  def percent_complete_rounded
+    percent_complete.round(1)
+  end
+
+  def percent_complete_integer
+    percent_complete.round(0)    
+  end
+
 end
