@@ -38,10 +38,10 @@
       <span class="check-boxes">
           <%= f.collection_check_boxes(:genre_ids, Genre.all, :id, :name) %>
       <br>
-      <!-- <%= f.fields_for :genres, @project.genres.build do |g| %>
+      <%= f.fields_for :genres, @project.genres.build do |g| %>
         <%= g.label :name, "Add a new genre:" %> 
         <%= g.text_field :name, class: "form-control" %>
-      <% end %> -->
+      <% end %>
     </span>
   </div>
 
