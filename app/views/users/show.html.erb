@@ -4,15 +4,19 @@
 <%= image_tag(@user.avatar.normal.url, :class => "avatar-normal") %>
 <% end %>
 
-<p>About This User: [...]</p>
-<p>Gender: [...]</p>
-<p>User Statistics: [...]</p>
+<% if @user.about %>
+  <p>About This User: <%= @user.about%></p>
+<% end %>
+
+<p>Total hours spent: <%= @user.hours_spent %></p>
+<p>Total words written: <%= @user.words_written %></p>
 
 <h2>Projects</h2>
 
-<p>...</p>
 
 
-<h2>Updates</h2>
 
-<p>...</p>
+
+
+
+<p>View all updates for this user</p>
