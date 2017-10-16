@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
  resources :users, only: [:show, :index] 
 
- 
+ get '/users/:id/updates', to: 'progress_updates#user_index'
 
   root "application#index"
   
