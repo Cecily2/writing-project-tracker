@@ -3,6 +3,7 @@ require "pry"
 class ProgressUpdatesController < ApplicationController
   def show
     @update = ProgressUpdate.find(params[:id])
+    @comment = Comment.new
   end
 
   def user_index

@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  resources :comments
   resources :projects do
-    resources :progress_updates, :path => 'updates'
+    resources :progress_updates, :path => 'updates' do
+      resources :comments, only: [:create]
+    end
   end
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => 'users/registrations' }
