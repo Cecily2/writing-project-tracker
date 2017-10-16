@@ -1,6 +1,9 @@
 require "pry"
 
-class ProgressUpdatesController < ApplicationController
+class ProgressUpdatesController < ApplicationController 
+  load_and_authorize_resource :project  
+  load_and_authorize_resource :through => :project
+
   def show
     @update = ProgressUpdate.find(params[:id])
     @comment = Comment.new

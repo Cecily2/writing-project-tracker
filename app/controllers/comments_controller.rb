@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-
+  load_and_authorize_resource
   def create
     progress_update = ProgressUpdate.find(params[:progress_update_id])
     comment = Comment.new(comment_params)
