@@ -10,11 +10,6 @@ body {
   padding: 0;
 }
 
-#container {
-  width: 500px;
-  margin: 25px auto;
-}
-
 .navstyle {
   background: #ffffff;
   border-bottom: 1px solid $border-color;
@@ -61,4 +56,24 @@ body {
 .collection-select .check-boxes label {
   margin: 0 15px 0 3px;
   color: #666;
+}
+
+
+@media (min-width: 576px) {
+  .container-width {
+      max-width: 540px;
+  }
+}
+
+
+@media (min-width: 992px) {
+  .container-width {
+      max-width: 650px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container-width {
+      max-width: 700px;
+  }
 }
