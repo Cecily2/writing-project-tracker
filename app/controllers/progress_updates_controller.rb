@@ -2,7 +2,7 @@ require "pry"
 
 class ProgressUpdatesController < ApplicationController 
   load_and_authorize_resource :project  
-  load_and_authorize_resource :through => :project
+  load_and_authorize_resource :through => :project, :except => :create
 
   def show
     @update = ProgressUpdate.find(params[:id])
@@ -28,6 +28,7 @@ class ProgressUpdatesController < ApplicationController
   end
 
   def create
+    # cancancan not active on this route - check validity manually
     project = Project.find(params[:project_id])
     update = ProgressUpdate.add_and_update_project(update_params, params[:word_format], project)
     update.user = current_user
