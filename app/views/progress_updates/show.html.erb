@@ -14,7 +14,7 @@ For project: <%= link_to @update.project.title, project_path(@update.project) %>
 
 <ul class="list-unstyled"><%= render @update.comments.all %></ul>
 
-<% if current_user %>
+<% if can? :create, Comment %>
   <h2>Add New Comment</h2>
     <%= form_for [@update.project, @update, @comment] do |f| %>
       <%= f.text_area :content, class: "form-control" %><br>
