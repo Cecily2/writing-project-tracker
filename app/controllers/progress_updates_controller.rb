@@ -2,7 +2,7 @@ require "pry"
 
 class ProgressUpdatesController < ApplicationController 
   load_and_authorize_resource :project  
-  load_and_authorize_resource :through => :project, :except => :create
+  load_and_authorize_resource :through => :project, :except => [:create, :user_index]
 
   def show
     @update = ProgressUpdate.find(params[:id])
