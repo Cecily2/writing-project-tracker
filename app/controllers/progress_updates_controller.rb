@@ -30,11 +30,15 @@ class ProgressUpdatesController < ApplicationController
   def create
     # cancancan not active on this route - check validity manually
     project = Project.find(params[:project_id])
-    update = ProgressUpdate.add_and_update_project(update_params, params[:word_format], project)
-    update.user = current_user
-    if update.save
-      update.project.save
-      redirect_to project_path(project)
+    if project.user_id == current_user.id
+      update = ProgressUpdate.add_and_update_project(update_params, params[:word_format], project)
+      update.user = current_user
+      if update.save
+        update.project.save
+        redirect_to project_path(project)
+      else
+        redirect_to "/"
+      end
     else
       redirect_to "/"
     end
