@@ -32,6 +32,7 @@ Genres:<br>
 
 <br><br>
 
-
+<%= link_to "Add Project Update", new_project_progress_update_path(@project), class: "btn btn-primary" if can? :create, @project => ProgressUpdate %>
+<br><br>
 <%= link_to "Edit Project", edit_project_path(@project), class: "btn btn-sm btn-primary" if can? :update, @project %>
 <%= link_to 'Delete Project', @project, method: :delete, class: "btn btn-sm btn-danger", data: { confirm: "This will also delete all of the project's updates. Are you sure?" }  if can? :destroy, @project %>

@@ -11,6 +11,10 @@
 <p>Total hours spent: <%= @user.hours_spent %></p>
 <p>Total words written: <%= @user.words_written %></p>
 
+<%= link_to "Edit Proflie", "/users/edit", class: "btn btn-primary" if user_signed_in? && current_user == @user %>
+<%= link_to "Add New Project", "/projects/new", class: "btn btn-primary" if user_signed_in? && current_user == @user %>
+
+
 <h2>Projects</h2>
 
 <div class="row">
