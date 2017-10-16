@@ -29,3 +29,8 @@ Genres:<br>
 
 <br><br>
 <%= link_to "View updates for this project", project_progress_updates_path(@project) %>
+
+<br><br>
+
+<a href="<%= edit_project_path(@project) %>" class="btn btn-sm btn-primary">Edit Project</a>
+<%= link_to 'Delete Project', @project, method: :delete, class: "btn btn-sm btn-danger", data: { confirm: "This will also delete all of the project's updates. Are you sure?" } %>
