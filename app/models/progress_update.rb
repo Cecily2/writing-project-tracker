@@ -2,7 +2,7 @@ require 'pry'
 class ProgressUpdate < ApplicationRecord
   belongs_to :project
   belongs_to :user
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   def self.add_and_update_project(params, word_format, project)
     update = self.new
