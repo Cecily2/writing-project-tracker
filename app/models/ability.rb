@@ -7,10 +7,12 @@ class Ability
 
     if user.admin?
       can :manage, :all
+    elsif user.normal?
+      can :read, :all
+      can :manage, [Project, ProgressUpdate], user_id: user.id
+      can [:create, :destroy], Comment, user_id: user.id
     else
       can :read, :all
-      can :manage, [Project, ProgressUpdate] user_id: user.id
-      can [:create, :destroy], Comment, user_id: user.id
     end
 
     # Define abilities for the passed in user here. For example:
