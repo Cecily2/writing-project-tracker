@@ -10,7 +10,7 @@ class Ability
     elsif user.normal?
       can :read, :all
       can :manage, Project, user_id: user.id
-      can [:destroy, :edit], ProgressUpdate, user_id: user.id
+      can [:destroy, :edit, :update], ProgressUpdate, user_id: user.id
       can :create, ProgressUpdate, :project => { user_id: user.id }
       can [:create, :destroy], Comment, user_id: user.id
     else
