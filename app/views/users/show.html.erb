@@ -13,15 +13,7 @@
 
 <h2>Projects</h2>
 
-
 <div class="row">
   <%= render @user.projects %>
 </div>
-
-
-
-
-
-
-
-<p>View all updates for this user</p>
+<p> <a href="/users/<%=@user.id%>/updates">View all updates from this user</a></p>
