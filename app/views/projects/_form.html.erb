@@ -1,0 +1,48 @@
+<%= form_for project do |f| %>
+
+  <div class="form-group">
+      <%= f.label :title %>
+      <%= f.text_field :title, class: "form-control" %>
+  </div>
+  <div class="form-group">
+      <%= f.label :description, "Project description" %>
+      <%= f.text_area :description, class: "form-control", rows: 5 %>
+  </div>
+
+  <div class="form-group">
+      <%= f.label :word_goal %>
+      <%= f.text_field :word_goal, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+      <%= f.label :words, "Current word count" %>
+      <%= f.text_field :words, class: "form-control", value: "" %>
+  </div>
+
+  <div class="form-group">
+      <%= f.label :hours, "Hours spent" %>
+      <small class="form-text text-muted">Approximate hours you've spent on this project so far - e.g. "1.25"</small>            
+      <%= f.text_field :hours, class: "form-control", value: "" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :type, "Project type" %><br>
+    <%= f.collection_select(:type, Type.all, :id, :name,  {}, {:class=>"form-control"}) %>
+  </div>
+
+  <div class="form-group collection-select">
+      <%= f.label :genre_ids, "Genres" %><br>
+
+      <span class="check-boxes">
+          <%= f.collection_check_boxes(:genre_ids, Genre.all, :id, :name) %>
+      <br>
+      <%= f.fields_for :genres, project.genres.build do |g| %>
+        <%= g.label :name, "Add a new genre:" %> 
+        <%= g.text_field :name, class: "form-control" %>
+      <% end %>
+    </span>
+  </div>
+
+  <%= f.submit class: "btn btn-primary" %>
+
+<% end %>
