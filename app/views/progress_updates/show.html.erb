@@ -14,13 +14,14 @@ For project: <%= link_to @update.project.title, project_path(@update.project) %>
 
 <ul class="list-unstyled"><%= render @update.comments.all %></ul>
 
-<h2>Add New Comment</h2>
-
-<%= form_for [@update.project, @update, @comment] do |f| %>
-  <%= f.text_area :content, class: "form-control" %><br>
-  <%= f.submit "Add Comment", class: "btn btn-primary" %>
+<% if current_user %>
+  <h2>Add New Comment</h2>
+    <%= form_for [@update.project, @update, @comment] do |f| %>
+      <%= f.text_area :content, class: "form-control" %><br>
+      <%= f.submit "Add Comment", class: "btn btn-primary" %>
+    <% end %>
+    <br><br>  
 <% end %>
 
-<br><br>
-<%= link_to "Edit Update", [:edit, @update.project, @update], class: "btn btn-sm btn-primary" %>
-<%= link_to 'Delete Update', [@update.project, @update], method: :delete, class: "btn btn-sm btn-danger" %>
+<%= link_to "Edit Update", [:edit, @update.project, @update], class: "btn btn-sm btn-primary"  if can? :update, @update %>
+<%= link_to 'Delete Update', [@update.project, @update], method: :delete, class: "btn btn-sm btn-danger" if can? :destroy, @update %>
