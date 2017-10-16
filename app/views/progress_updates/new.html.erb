@@ -1,3 +1,37 @@
 <h2>New Progress Update for "<%= @project.title %>"</h2>
 <br>
-<%= render partial: "progress_updates/form", locals: {project: @project, update: @update} %>
+
+<%= form_for [@project, @update] do |f| %>
+
+  <h3>How's it going?</h3>
+  <div class="form-group">
+    <%= f.text_area :content, class: "form-control", rows: 6  %>
+  </div>
+
+  <h3>Record your progress:</h3>
+    <div class="row">
+      <div class="col-lg-6">
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon" id="words-label">Words</span>      
+              <%= f.text_field :words, class: "form-control" %>
+            </div>
+            <%= radio_button_tag(:word_format, "new") %>
+            <%= label_tag(:word_format_new, "New words added") %><br>
+            <%= radio_button_tag(:word_format, "total") %>
+            <%= label_tag(:word_format_total, "Total project words") %>
+            </div>              
+      </div>
+      <div class="col-lg-6">
+          <div class="form-group">
+              <div class="input-group">
+                  <span class="input-group-addon" id="hours-label">Hours</span>      
+                  <%= f.text_field :hours, class: "form-control" %>
+              </div>
+          </div>        
+      </div>
+    </div>
+
+    <%= f.submit "Submit Update", class: "btn btn-primary" %>
+
+<% end %>

@@ -1,3 +1,21 @@
 <h2>Edit Progress Update</h2>
 <br>
-<%= render partial: "progress_updates/form", locals: {project: @project, update: @update} %>
+
+<%= form_for [@project, @update] do |f| %>
+  <div class="form-group">
+    <%= f.text_area :content, class: "form-control", rows: 6  %>
+  </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+          Words Added: <%= @update.words %>            
+      </div>
+      <div class="col-lg-6">
+          Hours: <%= @update.hours %>
+      </div>
+    </div>
+    <br>
+
+    <%= f.submit "Submit Update", class: "btn btn-primary" %>
+
+<% end %>
