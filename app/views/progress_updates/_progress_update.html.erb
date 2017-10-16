@@ -10,17 +10,13 @@
     </span>        
 </div>
 
-
-
-
-
 <div class="box">
     <%= progress_update.content %>
     <br><br>
-
-<%= link_to "Show page", project_progress_update_path(progress_update.project, progress_update) %>
-    
-
-- <%= progress_update.created_at %>
-
+    Words Added: <%= progress_update.words %><br>
+    Hours Worked: <%= progress_update.hours %><br>
+    Current Project Total Words: <%= progress_update.project.words %>
+    <br><br>
+    <%= link_to "Show page", project_progress_update_path(progress_update.project, progress_update) %>
+    -  <%= progress_update.comments.count %> comments - <%= progress_update.created_at %>
 </div>
