@@ -1,9 +1,9 @@
 class Project < ApplicationRecord
   belongs_to :user
-  has_many :progress_updates
+  has_many :progress_updates, dependent: :destroy
 
   belongs_to :type
-  has_many :project_genres
+  has_many :project_genres, dependent: :destroy
   has_many :genres, through: :project_genres
 
   def genres_attributes=(genre_attributes)
