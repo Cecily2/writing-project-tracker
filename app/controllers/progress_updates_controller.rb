@@ -36,6 +36,11 @@ class ProgressUpdatesController < ApplicationController
     end
   end
 
+  def destroy
+    ProgressUpdate.find(params[:id]).destroy
+    redirect_to "/"
+  end
+
   private
 
   def update_params
