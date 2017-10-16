@@ -45,6 +45,15 @@ class ProgressUpdatesController < ApplicationController
     end
   end
 
+  def update
+    progress_update = ProgressUpdate.find(params[:id])
+    if progress_update.update(update_params)
+      redirect_to project_progress_update_path(progress_update.project, progress_update)
+    else
+      redirect_to "/"
+    end
+  end
+
   def destroy
     ProgressUpdate.find(params[:id]).destroy
     redirect_to "/"
