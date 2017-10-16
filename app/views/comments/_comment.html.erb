@@ -1,4 +1,9 @@
-<%= comment.user.name %> says<br>
-<%= comment.content %><br>
-<%= comment.created_at %>
-<br><br>
+<li class="media">
+    <img class="d-flex mr-3 avatar-small" src="<%= comment.user.avatar.thumb.url %>">
+    <div class="media-body">
+      <h5><%= comment.user.name %> says</h5>
+      <%= comment.content %><br>
+      <%= comment.created_at %>
+      <br><br>      
+    </div>
+</li>
