@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :projects do
     resources :progress_updates, :path => 'updates' do
-      resources :comments, only: [:create]
+      resources :comments, only: [:create, :destroy]
     end
   end
 

@@ -4,6 +4,7 @@
       <h5><%= comment.user.name %> says</h5>
       <%= comment.content %><br>
       <%= comment.created_at %>
+      <br> <%= link_to 'Delete Comment', [comment.progress_update.project, comment.progress_update, comment], method: :delete, class: "btn btn-sm btn-danger" %>
       <br><br>      
     </div>
 </li>

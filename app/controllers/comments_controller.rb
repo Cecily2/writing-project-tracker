@@ -12,6 +12,12 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    progress_update = ProgressUpdate.find(params[:progress_update_id])
+    Comment.find(params[:id]).destroy
+    redirect_to project_progress_update_path(progress_update.project, progress_update)
+  end
+
   private
 
   def comment_params
