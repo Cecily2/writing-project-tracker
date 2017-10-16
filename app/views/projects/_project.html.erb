@@ -1,1 +1,20 @@
-<div class="col-12 col-md-6">Project Grid Item!</div>
+<div class="col-12 col-md-6">
+  <div class="box">
+      <h3><%= link_to project.title, project_path(project) %></h3>
+      
+        Time spent: <%= project.hours %> hours <br> 
+        Word goal: <%= project.word_goal %><br>      
+             Type: <%= project.type.name if project.type %> <br>
+        Genres: <% project.genres.each do |g| %>
+          <%= g.name %> 
+        <% end %>
+
+        <div class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+            aria-valuenow="<%= project.percent_complete_integer %>" aria-valuemin="0" aria-valuemax="100" style="width:<%= project.percent_complete_integer %>%">
+            <%= project.percent_complete_rounded %>%
+            </div>
+        </div>
+        
+  </div>
+</div>
