@@ -10,12 +10,6 @@ class ProjectsController < ApplicationController
     @project.genres.build
   end
 
-  def edit
-    @project = Project.find(params[:id])
-    @project.genres.build
-  end  
-
-
   def create
     project = Project.new(project_params)
     project.type = Type.find(params[:project][:type])
@@ -26,6 +20,23 @@ class ProjectsController < ApplicationController
       redirect_to "/"
     end
   end
+
+  def edit
+    @project = Project.find(params[:id])
+    @project.genres.build
+  end  
+
+  def update
+    project = Project.find(params[:id])
+    project.type = Type.find(params[:project][:type])
+    if project.update(project_params)
+      redirect_to project_path(project)
+    else
+      redirect_to "/"
+    end
+  end
+
+
 
 
   private
