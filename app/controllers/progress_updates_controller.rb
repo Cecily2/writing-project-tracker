@@ -36,6 +36,15 @@ class ProgressUpdatesController < ApplicationController
     end
   end
 
+  def edit
+    if current_user
+      @project = Project.find(params[:project_id])
+      @update = ProgressUpdate.find(params[:id])
+    else
+      redirect_to "/users/sign_in"
+    end
+  end
+
   def destroy
     ProgressUpdate.find(params[:id]).destroy
     redirect_to "/"
