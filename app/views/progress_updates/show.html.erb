@@ -13,3 +13,10 @@ For project: <%= link_to @update.project.title, project_path(@update.project) %>
 <h2>Comments</h2>
 
 <%= render @update.comments.all %>
+
+<h2>Add New Comment</h2>
+
+<%= form_for [@update.project, @update, @comment] do |f| %>
+  <%= f.text_area :content, class: "form-control" %>
+  <%= f.submit %>
+<% end %>
