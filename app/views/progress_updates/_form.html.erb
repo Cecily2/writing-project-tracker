@@ -5,6 +5,7 @@
     <%= f.text_area :content, class: "form-control", rows: 6  %>
   </div>
 
+  <% if !update.persisted? %>
   <h3>Record your progress:</h3>
     <div class="row">
       <div class="col-lg-6">
@@ -28,6 +29,7 @@
           </div>        
       </div>
     </div>
+    <% end %>
 
     <%= f.submit "Submit Update", class: "btn btn-primary" %>
 
