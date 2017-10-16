@@ -26,6 +26,10 @@ class User < ApplicationRecord
 
   def hours_spent
     self.projects.map {|p| p.hours}.sum
+  end 
+
+  def words_written
+    self.projects.map {|p| p.words}.sum
   end  
 
 end
