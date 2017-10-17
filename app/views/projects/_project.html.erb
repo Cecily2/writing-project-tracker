@@ -2,6 +2,10 @@
   <div class="box">
       <h3><%= link_to project.title, project_path(project) %></h3>
       
+        <% if show_user == true %>
+        <strong>Created by <%= link_to project.user.name, user_path(project.user) %></strong><br>
+        <% end %>
+
         Time spent: <%= project.hours %> hours <br> 
         Word goal: <%= project.word_goal %><br>      
              Type: <%= project.type.name if project.type %> <br>
