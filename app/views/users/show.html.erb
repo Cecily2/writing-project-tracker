@@ -18,6 +18,6 @@
 <h2>Projects</h2>
 
 <div class="row">
-  <%= render @user.projects %>
+    <%= render partial: "projects/project", collection: @user.projects, locals: {show_user: false} %>
 </div>
 <p> <a href="/users/<%=@user.id%>/updates">View all updates from this user</a></p>
