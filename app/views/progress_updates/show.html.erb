@@ -1,27 +1,48 @@
-<%= link_to @update.user.name, user_path(@update.user) %> says:<br><br>
+<div class="box">
+    <div class="media">
+        <%= image_tag(@update.user.avatar.thumb.url, :class => "d-flex mr-3 avatar-small") %>
+        <div class="media-body">
+            <strong><%= link_to @update.user.name, user_path(@update.user) %></strong>
+            posted an update for their project <%= link_to @update.project.title, project_path(@update.project) %>
+            <br>
+            <span class="text-muted"><%= time_ago_in_words(@update.created_at) %> ago</span>
+             <br>
+            <br>
+            <%= @update.content %>
+        </div>
+    </div>
 
-<%= @update.content %><br><br>
-
-<%= @update.created_at %><br><br>
-
-<%= @update.words %> new words<br>
-
-<%= @update.hours %> hours worked<br><br>
-
-For project: <%= link_to @update.project.title, project_path(@update.project) %> <br><br>
-
-<h2>Comments</h2>
-
-<ul class="list-unstyled"><%= render @update.comments.all %></ul>
-
-<% if can? :create, Comment %>
-  <h2>Add New Comment</h2>
-    <%= form_for [@update.project, @update, @comment] do |f| %>
-      <%= f.text_area :content, class: "form-control" %><br>
-      <%= f.submit "Add Comment", class: "btn btn-primary" %>
-    <% end %>
-    <br><br>  
-<% end %>
-
-<%= link_to "Edit Update", [:edit, @update.project, @update], class: "btn btn-sm btn-primary"  if can? :update, @update %>
-<%= link_to 'Delete Update', [@update.project, @update], method: :delete, class: "btn btn-sm btn-danger" if can? :destroy, @update %>
+    <div class="container stats">
+        <div class="row">
+            <% if @update.words != 0 %>
+                <div class="col">
+                    <span><%= @update.words %></span>               
+                    words added
+                </div>
+            <% end %>
+            <% if @update.hours != 0.0 %>
+            <div class="col">
+               <span><%= @update.hours %></span>
+               hours worked
+            </div>
+            <% end %>
+        </div>
+    </div>
+    <div class="footer">
+        <h2>Comments</h2>
+        
+        <ul class="list-unstyled"><%= render @update.comments.all %></ul>
+        
+        <% if can? :create, Comment %>
+          <h2>Add New Comment</h2>
+            <%= form_for [@update.project, @update, @comment] do |f| %>
+              <%= f.text_area :content, class: "form-control" %><br>
+              <%= f.submit "Add Comment", class: "btn btn-primary" %>
+            <% end %>
+            <br><br>  
+        <% end %>
+        
+        <%= link_to "Edit Update", [:edit, @update.project, @update], class: "btn btn-sm btn-primary"  if can? :update, @update %>
+        <%= link_to 'Delete Update', [@update.project, @update], method: :delete, class: "btn btn-sm btn-danger" if can? :destroy, @update %>
+    </div>
+</div>
