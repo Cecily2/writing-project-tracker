@@ -1,21 +1,37 @@
 
-<% if progress_update.user.avatar.url.present? %>  
-    <%= image_tag(progress_update.user.avatar.thumb.url, :class => "avatar-small") %>
-<% end %>
 
-<div class="update-info">
-    <span class="update-info-text">
-        <strong><%= link_to progress_update.user.name, user_path(progress_update.user) %></strong>
-        posted an update for their project <%= link_to progress_update.project.title, project_path(progress_update.project) %>
-    </span>        
-</div>
 
 <div class="box">
-    <%= progress_update.content %>
-    <br><br>
-    Words Added: <%= progress_update.words %><br>
-    Hours Worked: <%= progress_update.hours %><br>
-    <br><br>
-    <%= link_to "Show page", project_progress_update_path(progress_update.project, progress_update) %>
-    -  <%= progress_update.comments.count %> comments - <%= time_ago_in_words(progress_update.created_at) %> ago
+    <div class="media">
+        <%= image_tag(progress_update.user.avatar.thumb.url, :class => "d-flex mr-3 avatar-small") %>
+        <div class="media-body">
+            <strong><%= link_to progress_update.user.name, user_path(progress_update.user) %></strong>
+            posted an update for their project <%= link_to progress_update.project.title, project_path(progress_update.project) %>
+            <br>
+            <span class="text-muted"><%= time_ago_in_words(progress_update.created_at) %> ago</span>
+             <br>
+            <br>
+            <%= progress_update.content %>
+        </div>
+    </div>
+
+    <div class="container stats">
+        <div class="row">
+            <% if progress_update.words != 0 %>
+                <div class="col">
+                    <span><%= progress_update.words %></span>               
+                    words added
+                </div>
+            <% end %>
+            <% if progress_update.hours != 0.0 %>
+            <div class="col">
+               <span><%= progress_update.hours %></span>
+               hours worked
+            </div>
+            <% end %>
+        </div>
+    </div>
+    <div class="footer">
+        <%= link_to "#{progress_update.comments.count} comments", project_progress_update_path(progress_update.project, progress_update) %>
+    </div>
 </div>
