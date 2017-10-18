@@ -54,12 +54,17 @@
 
     <div class="row align-items-center">
       <div class="col">
-          <%= link_to "Edit Project", edit_project_path(@project), class: "btn btn-sm btn-secondary" if can? :update, @project %>
-          <%= link_to 'Delete Project', @project, method: :delete, class: "btn btn-sm btn-secondary", data: { confirm: "This will also delete all of the project's updates. Are you sure?" }  if can? :destroy, @project %>
+          <div class="media">
+              <img src="<%= @project.user.avatar.thumb.url %>" class="d-flex mr-3 avatar-xs">
+              <div class="media-body">
+                  Created by <%= link_to @project.user.name, user_path(@project.user) %><br>
+                  <span class="text-muted"><%= time_ago_in_words(@project.created_at) %> ago</span>
+              </div>
+          </div>          
       </div>
       <div class="col text-right">
-        <img src="<%= @project.user.avatar.thumb.url %>" class="avatar-xs">
-        Created by <%= link_to @project.user.name, user_path(@project.user) %><br>        
+          <%= link_to "Edit Project", edit_project_path(@project), class: "btn btn-sm btn-secondary" if can? :update, @project %>
+          <%= link_to 'Delete Project', @project, method: :delete, class: "btn btn-sm btn-secondary", data: { confirm: "This will also delete all of the project's updates. Are you sure?" }  if can? :destroy, @project %>
       </div>
     </div>
 </div>
