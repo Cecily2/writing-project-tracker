@@ -20,10 +20,10 @@ class ProjectsController < ApplicationController
     project.type = Type.find(params[:project][:type])
     project.user = current_user
     if project.save
+      flash[:success] = "Project created!"
       redirect_to project_path(project)
     else
-      flash[:error] = project.errors.full_messages.join(". ")
-      redirect_to new_project_path
+      render :"projects/new"
     end
   end
 
@@ -33,18 +33,21 @@ class ProjectsController < ApplicationController
   end  
 
   def update
-    project = Project.find(params[:id])
-    project.type = Type.find(params[:project][:type])
-    if project.update(project_params)
-      redirect_to project_path(project)
+    @project = Project.find(params[:id])
+    @project.type = Type.find(params[:project][:type])
+    if @project.update(project_params)
+      flash[:success] = "Project updated!"      
+      redirect_to project_path(@project)
     else
-      redirect_to root_url
+      render :"projects/edit"
     end
   end
 
   def destroy
-    Project.find(params[:id]).destroy
-    redirect_to "/"    
+    @project = Project.find(params[:id])
+    @project.destroy
+    flash[:success] = "Project deleted."
+    redirect_to user_path(@project.user)
   end
 
 
