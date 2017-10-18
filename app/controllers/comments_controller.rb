@@ -6,8 +6,10 @@ class CommentsController < ApplicationController
     comment.user = current_user
     comment.progress_update = progress_update
     if comment.save
+      flash[:success] = "Comment added!"
       redirect_to project_progress_update_path(progress_update.project, progress_update)
     else
+      flash[:error] = "Couldn't create comment."
       redirect_to project_progress_update_path(progress_update.project, progress_update)
     end
   end
@@ -15,6 +17,7 @@ class CommentsController < ApplicationController
   def destroy
     progress_update = ProgressUpdate.find(params[:progress_update_id])
     Comment.find(params[:id]).destroy
+    flash[:success] = "Comment deleted!"
     redirect_to project_progress_update_path(progress_update.project, progress_update)
   end
 
