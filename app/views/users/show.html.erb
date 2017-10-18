@@ -1,23 +1,53 @@
-<h1><%= @user.name %></h1>
+<div class="box">
+    <% if @user.avatar.url.present? -%>  
+      <%= image_tag(@user.avatar.normal.url, :class => "avatar-profile") %>
+    <% end -%>
+  <h1><%= @user.name %>  <%= link_to "Edit Proflie", "/users/edit", class: "btn btn-sm btn-primary" if user_signed_in? && current_user == @user %>
+  </h1>  
+    <% if @user.about %>
+      <p><%= @user.about%></p>
+    <% end %>
 
-<% if @user.avatar.url.present? %>  
-<%= image_tag(@user.avatar.normal.url, :class => "avatar-normal") %>
-<% end %>
+    <h3><%= @user.name %>'s genres</h3>
+    <% @user.genres.each do |g| %>
+       <span class="badge badge-info"><%= g.name %></span>
+    <% end %>
 
-<% if @user.about %>
-  <p>About This User: <%= @user.about%></p>
-<% end %>
+    <div class="stats-box">
+        <hr>            
+        <div class="container stats">
+            <div class="row">
+                <% if @user.hours_spent != nil %>
+                    <div class="col">
+                        <span><%= @user.hours_spent %></span>               
+                        hours recorded
+                    </div>
+                <% end %>
+                <% if @user.words_written != nil %>
+                <div class="col">
+                   <span><%= @user.words_written %></span>
+                   total words written
+                </div>
+                <% end %>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <h3>Cecily's Projects     <%= link_to "Add New Project", "/projects/new", class: "btn btn-sm btn-primary" if user_signed_in? && current_user == @user %></h3>
+    <p>...</p>
 
-<p>Total hours spent: <%= @user.hours_spent %></p>
-<p>Total words written: <%= @user.words_written %></p>
 
-<%= link_to "Edit Proflie", "/users/edit", class: "btn btn-primary" if user_signed_in? && current_user == @user %>
-<%= link_to "Add New Project", "/projects/new", class: "btn btn-primary" if user_signed_in? && current_user == @user %>
+</div>
 
 
+
+
+
+
+<!-- 
 <h2>Projects</h2>
 
 <div class="row">
     <%= render partial: "projects/project", collection: @user.projects, locals: {show_user: false} %>
 </div>
-<p> <a href="/users/<%=@user.id%>/updates">View all updates from this user</a></p>
+<p> <a href="/users/<%=@user.id%>/updates">View all updates from this user</a></p> -->

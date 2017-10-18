@@ -1,39 +1,65 @@
-<h1><%= @project.title %></h1>
-
-<%= @project.description %><br><br>
-Created by <%= link_to @project.user.name, user_path(@project.user) %><br>
-Word Goal: <%= @project.word_goal %><br>
-Current Words: <%= @project.words %><br>
-Time Spent: <%= @project.hours %> <br><br>
-
-
-
-
-
-  <% if @project.progress_bar? %>
-  <div class="progress">
-    <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
-    aria-valuenow="<%= @project.percent_complete_integer %>" aria-valuemin="0" aria-valuemax="100" style="width:<%= @project.percent_complete_integer %>%">
-    <%= @project.percent_complete_rounded %>%
-    </div>
-  </div>
+<div class="box">
+  <h1><%= @project.title %></h1>
+  <% @project.genres.each do |g| %>
+    <span class="badge badge-info"><%= g.name %></span>
   <% end %>
-  
-
-
-
-Type: <%= @project.type.name if @project.type %> <br><br>
-Genres:<br>
-<% @project.genres.each do |g| %>
-  <%= g.name %><br>
-<% end %>
-
-<br><br>
-<%= link_to "View updates for this project", project_progress_updates_path(@project) %>
-
 <br><br>
 
-<%= link_to "Add Project Update", new_project_progress_update_path(@project), class: "btn btn-primary" if can? :create, @project => ProgressUpdate %>
-<br><br>
-<%= link_to "Edit Project", edit_project_path(@project), class: "btn btn-sm btn-primary" if can? :update, @project %>
-<%= link_to 'Delete Project', @project, method: :delete, class: "btn btn-sm btn-danger", data: { confirm: "This will also delete all of the project's updates. Are you sure?" }  if can? :destroy, @project %>
+
+<div class="stats-box">
+    <div class="container stats">
+        <div class="row">
+            <% if @project.hours != nil %>
+                <div class="col">
+                    <span><%= @project.hours %></span>               
+                    hours
+                </div>
+            <% end %>
+            <% if @project.words != nil %>
+            <div class="col">
+               <span><%= @project.words %></span>
+               current words
+            </div>
+            <% end %>
+
+            <% if @project.word_goal != nil %>
+            <div class="col">
+               <span><%= @project.word_goal %></span>
+               word goal
+            </div>
+            <% end %>
+        </div>
+    </div>
+
+    <% if @project.progress_bar? %>
+    <br>
+    <div class="progress">
+      <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+      aria-valuenow="<%= @project.percent_complete_integer %>" aria-valuemin="0" aria-valuemax="100" style="width:<%= @project.percent_complete_integer %>%">
+      <%= @project.percent_complete_rounded %>%
+      </div>
+    </div>
+    <% end %>
+</div>
+
+  <hr>
+
+    <%= @project.description %><br><br>
+    
+
+  <%= link_to "View updates for this project", project_progress_updates_path(@project), class: "btn btn-primary" %>
+  <%= link_to "Add project update", new_project_progress_update_path(@project), class: "btn btn-primary" if can? :create, @project => ProgressUpdate %>
+  <br><br>
+
+
+    <div class="row align-items-center">
+      <div class="col">
+          <%= link_to "Edit Project", edit_project_path(@project), class: "btn btn-sm btn-secondary" if can? :update, @project %>
+          <%= link_to 'Delete Project', @project, method: :delete, class: "btn btn-sm btn-secondary", data: { confirm: "This will also delete all of the project's updates. Are you sure?" }  if can? :destroy, @project %>
+      </div>
+      <div class="col text-right">
+        <img src="<%= @project.user.avatar.thumb.url %>" class="avatar-xs">
+        Created by <%= link_to @project.user.name, user_path(@project.user) %><br>        
+      </div>
+    </div>
+</div>

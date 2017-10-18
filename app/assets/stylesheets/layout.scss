@@ -48,9 +48,6 @@ body {
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  float: left;
-  margin-right: 5px;
-  margin-bottom: 10px;
 }
 
 .avatar-small {
@@ -71,10 +68,17 @@ body {
   margin-bottom: 10px;
 }
 
-.avatar-normal {
+.avatar-profile {
+  float: right;
   border-radius: 50%;
   width: 200px;
   height: 200px;
+  margin: 0 0 10px 20px;
+}
+
+.stats-box {
+  clear: both;
+  padding: 10px 0 20px 0;
 }
 
 .collection-select .check-boxes label {
@@ -129,7 +133,6 @@ body {
 .field_with_errors input, .field_with_errors textarea {
   @extend .is-invalid;
 }
-
 
 @media (min-width: 576px) {
   .container-width {
