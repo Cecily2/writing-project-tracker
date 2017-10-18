@@ -16,12 +16,12 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    project = Project.new(project_params)
-    project.type = Type.find(params[:project][:type])
-    project.user = current_user
-    if project.save
+    @project = Project.new(project_params)
+    @project.type = Type.find(params[:project][:type])
+    @project.user = current_user
+    if @project.save
       flash[:success] = "Project created!"
-      redirect_to project_path(project)
+      redirect_to project_path(@project)
     else
       render :"projects/new"
     end
