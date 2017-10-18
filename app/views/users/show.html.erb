@@ -34,20 +34,9 @@
         <hr>
     </div>
     <h3>Cecily's Projects     <%= link_to "Add New Project", "/projects/new", class: "btn btn-sm btn-primary" if user_signed_in? && current_user == @user %></h3>
-    <p>...</p>
-
+    <div class="row">
+       <%= render partial: "projects/project_user_page", collection: @user.projects, as: :project %>
+    </div>
+    <a href="/users/<%=@user.id%>/updates" class="btn btn-primary">View all updates from this user</a>
 
 </div>
-
-
-
-
-
-
-<!-- 
-<h2>Projects</h2>
-
-<div class="row">
-    <%= render partial: "projects/project", collection: @user.projects, locals: {show_user: false} %>
-</div>
-<p> <a href="/users/<%=@user.id%>/updates">View all updates from this user</a></p> -->
