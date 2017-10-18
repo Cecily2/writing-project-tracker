@@ -19,6 +19,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     @project.type = Type.find(params[:project][:type])
     @project.user = current_user
+    @project.genres.each {|g| g.users << current_user}
     if @project.save
       flash[:success] = "Project created!"
       redirect_to project_path(@project)
