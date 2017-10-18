@@ -55,12 +55,6 @@ ActiveRecord::Schema.define(version: 20171018042240) do
     t.integer "type_id"
   end
 
-  create_table "types", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "user_genres", force: :cascade do |t|
     t.integer "user_id"
     t.integer "genre_id"
@@ -80,7 +74,7 @@ ActiveRecord::Schema.define(version: 20171018042240) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "about"
-    t.string "gender"
+    t.string "gender", default: "other"
     t.string "name"
     t.string "avatar"
     t.string "provider"
