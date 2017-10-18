@@ -33,7 +33,7 @@
         </div>
         <hr>
     </div>
-    <h3>Cecily's Projects     <%= link_to "Add New Project", "/projects/new", class: "btn btn-sm btn-primary" if user_signed_in? && current_user == @user %></h3>
+    <h3><%= @user.name %>'s Projects     <%= link_to "Add New Project", "/projects/new", class: "btn btn-sm btn-primary" if user_signed_in? && current_user == @user %></h3>
     <div class="row">
        <%= render partial: "projects/project_user_page", collection: @user.projects, as: :project %>
     </div>
