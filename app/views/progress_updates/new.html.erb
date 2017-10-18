@@ -1,4 +1,5 @@
-<h2>New Progress Update for "<%= @project.title %>"</h2>
+<div class="box">
+    <h2>New Progress Update for "<%= @project.title %>"</h2>
 <br>
 
 <%= form_for [@project, @update] do |f| %>
@@ -35,3 +36,7 @@
     <%= f.submit "Submit Update", class: "btn btn-primary" %>
 
 <% end %>
+
+</div>
+
+
