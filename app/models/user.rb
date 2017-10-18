@@ -27,11 +27,11 @@ class User < ApplicationRecord
   end
 
   def hours_spent
-    self.projects.map {|p| p.hours}.sum
+    self.projects.map {|p| p.hours }.compact.sum
   end 
 
   def words_written
-    self.projects.map {|p| p.words}.sum
+    self.projects.map {|p| p.words}.compact.sum
   end  
 
 end
