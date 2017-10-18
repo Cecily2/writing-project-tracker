@@ -19,52 +19,51 @@ class ProgressUpdatesController < ApplicationController
   end
 
   def new
-    if current_user
-      @project = Project.find(params[:project_id])
-      @update = ProgressUpdate.new
-    else
-      redirect_to "/users/sign_in"
-    end
+    @project = Project.find(params[:project_id])
+    @update = ProgressUpdate.new
   end
 
   def create
     # cancancan not active on this route - check validity manually
-    project = Project.find(params[:project_id])
-    if project.user_id == current_user.id
-      update = ProgressUpdate.add_and_update_project(update_params, params[:word_format], project)
-      update.user = current_user
-      if update.save
-        update.project.save
-        redirect_to project_path(project)
+    @project = Project.find(params[:project_id])
+    if @project.user_id == current_user.id
+      @update = ProgressUpdate.add_and_update_project(update_params, params[:word_format], @project)
+      @update.user = current_user
+      if @update.save
+        @update.project.save
+        flash[:success] = "Progress update created!"
+        redirect_to project_path(@project)
       else
-        redirect_to "/"
+        flash.now[:error] = @update.full_errors_string
+        render :new
       end
     else
-      redirect_to "/"
+      flash[:error] = "You don't own that project."
+      redirect_to root_path
     end
   end
 
   def edit
-    if current_user
-      @project = Project.find(params[:project_id])
-      @update = ProgressUpdate.find(params[:id])
-    else
-      redirect_to "/users/sign_in"
-    end
+    @project = Project.find(params[:project_id])
+    @update = ProgressUpdate.find(params[:id])
   end
 
   def update
-    progress_update = ProgressUpdate.find(params[:id])
-    if progress_update.update(update_params)
-      redirect_to project_progress_update_path(progress_update.project, progress_update)
+    @progress_update = ProgressUpdate.find(params[:id])
+    if @progress_update.update(update_params)
+      flash[:success] = "Edits saved!"
+      redirect_to project_progress_update_path(@progress_update.project, @progress_update)
     else
-      redirect_to "/"
+      flash.now[:error] = @progress_update.full_errors_string
+      render :edit
     end
   end
 
   def destroy
-    ProgressUpdate.find(params[:id]).destroy
-    redirect_to "/"
+    @update = ProgressUpdate.find(params[:id]).destroy
+    @update.destroy
+    flash[:success] = "Update deleted."
+    redirect_to project_path(@update.project)
   end
 
   private
