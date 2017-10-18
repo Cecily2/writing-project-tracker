@@ -1,5 +1,12 @@
 <%= form_for project do |f| %>
 
+
+    <% unless project.full_errors_string.empty? %>
+       <div class="alert error">
+            <%= project.full_errors_string %>
+        </div>
+     <% end %>
+
   <div class="form-group">
       <%= f.label :title %>
       <%= f.text_field :title, class: "form-control" %>
