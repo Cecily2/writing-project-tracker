@@ -4,6 +4,8 @@ class ProgressUpdate < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
 
+  validates :content, presence: true
+
   def self.add_and_update_project(params, word_format, project)
     update = self.new
     update.project = project
@@ -21,4 +23,9 @@ class ProgressUpdate < ApplicationRecord
     update.hours = params[:hours].to_f
     update
   end
+
+  def full_errors_string
+    self.errors.full_messages.join(". ")
+  end
+
 end
