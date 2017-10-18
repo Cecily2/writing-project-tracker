@@ -1,9 +1,9 @@
-<div class="box">
-    <% if @user.avatar.url.present? -%>  
+<div class="box"> 
       <%= image_tag(@user.avatar.normal.url, :class => "avatar-profile") %>
-    <% end -%>
+
   <h1><%= @user.name %>  <%= link_to "Edit Proflie", "/users/edit", class: "btn btn-sm btn-primary" if user_signed_in? && current_user == @user %>
   </h1>  
+    <small class="text-muted">Joined <%= time_ago_in_words(@user.created_at) %> ago</small>
     <% if @user.about %>
       <p><%= @user.about%></p>
     <% end %>
