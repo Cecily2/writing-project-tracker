@@ -31,4 +31,8 @@ class Project < ApplicationRecord
     percent_complete.round(0)    
   end
 
+  def full_errors_string
+    self.errors.full_messages.join(". ")
+  end
+
 end
