@@ -31,6 +31,16 @@ class User < ApplicationRecord
     end      
   end
 
+  def possessive_pronoun
+    if self.gender == "female"
+      "her"
+    elsif self.gender == "male"
+      "his"
+    else
+      "their"
+    end
+  end
+
   def hours_spent
     self.projects.map {|p| p.hours }.compact.sum
   end 
