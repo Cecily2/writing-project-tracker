@@ -93,6 +93,11 @@ body {
 }
 
 
+
+.flash {
+  @extend .alert;
+}
+
 .error {
   @extend .alert-danger;
   margin-top: 20px;
@@ -103,7 +108,12 @@ body {
   margin-top: 20px;
 }
 
-.field_with_errors input {
+.notice, .alert {
+  @extend .alert-primary;
+  margin-top: 20px;
+}
+
+.field_with_errors input, .field_with_errors textarea {
   @extend .is-invalid;
 }
 
