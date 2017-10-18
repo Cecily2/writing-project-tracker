@@ -22,7 +22,8 @@ class ProjectsController < ApplicationController
     if project.save
       redirect_to project_path(project)
     else
-      redirect_to "/"
+      flash[:error] = project.errors.full_messages.join(". ")
+      redirect_to new_project_path
     end
   end
 
@@ -37,7 +38,7 @@ class ProjectsController < ApplicationController
     if project.update(project_params)
       redirect_to project_path(project)
     else
-      redirect_to "/"
+      redirect_to root_url
     end
   end
 
