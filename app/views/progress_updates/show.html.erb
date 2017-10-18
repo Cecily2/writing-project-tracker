@@ -14,13 +14,13 @@
 
     <div class="container stats">
         <div class="row">
-            <% if @update.words != 0 %>
+            <% if @update.words != nil %>
                 <div class="col">
                     <span><%= @update.words %></span>               
                     words added
                 </div>
             <% end %>
-            <% if @update.hours != 0.0 %>
+            <% if @update.hours != nil %>
             <div class="col">
                <span><%= @update.hours %></span>
                hours worked
