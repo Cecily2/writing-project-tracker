@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :progress_updates
   has_many :comments
   has_many :commented_updates, as: :progress_updates, through: :comments
+  has_many :user_genres
+  has_many :genres, through: :user_genres
 
   validates :name, presence: true
 
