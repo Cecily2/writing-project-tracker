@@ -23,6 +23,7 @@ class ProjectsController < ApplicationController
       flash[:success] = "Project created!"
       redirect_to project_path(@project)
     else
+      flash.now[:error] = @project.full_errors_string
       render :"projects/new"
     end
   end
@@ -39,6 +40,7 @@ class ProjectsController < ApplicationController
       flash[:success] = "Project updated!"      
       redirect_to project_path(@project)
     else
+      flash.now[:error] = @project.full_errors_string      
       render :"projects/edit"
     end
   end
