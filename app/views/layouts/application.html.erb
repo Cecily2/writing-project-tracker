@@ -14,7 +14,7 @@
   <div class="container container-width">
 
           <% flash.each do |name, msg| -%>
-            <%= content_tag :div, msg, class: "flash #{name}" %>
+            <%= content_tag :div, msg, class: "alert #{name}" %>
           <% end -%>
 
           
