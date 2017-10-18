@@ -8,7 +8,7 @@
 
         Time spent: <%= project.hours %> hours <br> 
         Word goal: <%= project.word_goal %><br>      
-             Type: <%= project.type.name if project.type %> <br>
+        
         Genres: <% project.genres.each do |g| %>
           <%= g.name %> 
         <% end %>

@@ -25,11 +25,6 @@
       <%= f.text_field :hours, class: "form-control" %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :type, "Project type" %><br>
-    <%= f.collection_select(:type, Type.all, :id, :name,  {}, {:class=>"form-control"}) %>
-  </div>
-
   <div class="form-group collection-select">
       <%= f.label :genre_ids, "Genres" %><br>
 
