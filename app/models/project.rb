@@ -32,7 +32,7 @@ class Project < ApplicationRecord
   end
 
   def full_errors_string
-    self.errors.full_messages.join(". ")
+    self.errors.full_messages.join(". ") + "."
   end
 
 end
