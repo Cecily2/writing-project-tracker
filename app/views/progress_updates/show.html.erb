@@ -28,13 +28,13 @@
             <% end %>
         </div>
     </div>
+<br>
     <div class="footer">
-        <h2>Comments</h2>
-        
+        <br>
         <ul class="list-unstyled"><%= render @update.comments.all %></ul>
         
         <% if can? :create, Comment %>
-          <h2>Add New Comment</h2>
+          <h3>Add New Comment</h3>
             <%= form_for [@update.project, @update, @comment] do |f| %>
               <%= f.text_area :content, class: "form-control" %><br>
               <%= f.submit "Add Comment", class: "btn btn-primary" %>

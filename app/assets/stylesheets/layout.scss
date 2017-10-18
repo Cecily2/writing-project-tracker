@@ -44,6 +44,15 @@ body {
   vertical-align: middle;
 }
 
+.avatar-xs {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  float: left;
+  margin-right: 5px;
+  margin-bottom: 10px;
+}
+
 .avatar-small {
   border-radius: 50%;
   width: 60px;
@@ -71,6 +80,10 @@ body {
 .collection-select .check-boxes label {
   margin: 0 15px 0 3px;
   color: #666;
+}
+
+.delete-link {
+  color: red;
 }
 
 .stats {

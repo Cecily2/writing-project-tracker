@@ -1,10 +1,14 @@
 <li class="media">
-    <img class="d-flex mr-3 avatar-small" src="<%= comment.user.avatar.thumb.url %>">
+    <img class="d-flex mr-3 avatar-xs" src="<%= comment.user.avatar.thumb.url %>">
     <div class="media-body">
-      <h5><%= comment.user.name %> says</h5>
       <%= comment.content %><br>
-      <%= comment.created_at %>
-      <br> <%= link_to 'Delete Comment', [comment.progress_update.project, comment.progress_update, comment], method: :delete, class: "btn btn-sm btn-danger" if can? :destroy, comment%>
-      <br><br>      
+      <small class="text-muted">
+         By <%= comment.user.name %> - <%= time_ago_in_words(comment.created_at) %> ago
+         
+        <% if can? :destroy, comment %> 
+        - <%= link_to 'Delete Comment', [comment.progress_update.project, comment.progress_update, comment], method: :delete %>
+        <% end %>
+      </small>
+           <br><br>      
     </div>
 </li>
