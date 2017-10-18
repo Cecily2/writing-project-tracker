@@ -10,13 +10,14 @@ Time Spent: <%= @project.hours %> <br><br>
 
 
 
-
-<div class="progress">
+  <% if @project.progress_bar? %>
+  <div class="progress">
     <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
     aria-valuenow="<%= @project.percent_complete_integer %>" aria-valuemin="0" aria-valuemax="100" style="width:<%= @project.percent_complete_integer %>%">
     <%= @project.percent_complete_rounded %>%
     </div>
   </div>
+  <% end %>
   
 
 
