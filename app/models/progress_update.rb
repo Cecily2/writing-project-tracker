@@ -7,21 +7,27 @@ class ProgressUpdate < ApplicationRecord
   validates :content, presence: true
 
   def self.add_and_update_project(params, word_format, project)
-    update = self.new
-    update.project = project
-    if word_format == "new"
-      update.project.words += params[:words].to_i
-      words_added = params[:words].to_i
-    else
-      update.project.words = params[:words].to_i
-      words_added = update.project.words - params[:words].to_i
+    progress_update = self.new
+    progress_update.project = project
+
+    if params[:words] != ""
+      if word_format == "new"
+        words_added = params[:words].to_i
+        progress_update.project.words += words_added
+      else
+        words_added = params[:words].to_i - progress_update.project.words
+        progress_update.project.words = params[:words].to_i
+      end
+      progress_update.words = words_added      
     end
 
-    update.project.hours += params[:hours].to_f
-    update.content = params[:content]
-    update.words = words_added
-    update.hours = params[:hours].to_f
-    update
+    if params[:hours] != ""
+      progress_update.hours = params[:hours].to_f
+      progress_update.project.hours += params[:hours].to_f
+    end
+
+    progress_update.content = params[:content]
+    progress_update
   end
 
   def full_errors_string

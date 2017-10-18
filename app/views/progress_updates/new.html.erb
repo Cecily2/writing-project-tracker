@@ -16,7 +16,7 @@
               <span class="input-group-addon" id="words-label">Words</span>      
               <%= f.text_field :words, class: "form-control" %>
             </div>
-            <%= radio_button_tag(:word_format, "new") %>
+            <%= radio_button_tag(:word_format, "new", true) %>
             <%= label_tag(:word_format_new, "New words added") %><br>
             <%= radio_button_tag(:word_format, "total") %>
             <%= label_tag(:word_format_total, "Total project words") %>
