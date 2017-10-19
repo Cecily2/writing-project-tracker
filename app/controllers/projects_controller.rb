@@ -3,10 +3,18 @@ class ProjectsController < ApplicationController
   load_and_authorize_resource
 
   def index
+    @genres = Genre.all
     if !params[:genre].blank?
-      @projects = Project.joins(:project_genres).where(:project_genres => {:genre_id => params[:genre]})
+      @projects = Project.by_genre(params[:genre])
     else
       @projects = Project.all
+    end
+
+    if !params[:sort].blank?
+      @projects = @projects.order(created_at: :desc) if params[:sort] == "newest"
+      @projects = @projects.order(words: :desc) if params[:sort] == "words"
+      @projects = @projects.order(word_goal: :desc) if params[:sort] == "word_goal"
+      @projects = @projects.order(hours: :desc) if params[:sort] == "hours"
     end
   end
 
