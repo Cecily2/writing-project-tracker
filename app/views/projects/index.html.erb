@@ -1,5 +1,15 @@
 <h2>Projects</h2>
 
+
+<div>
+  <h3>Filter projects:</h3>
+  <%= form_tag("/projects", method: "get") do %>
+    <%= select_tag "genre", options_from_collection_for_select(Genre.all, "id", "name"), include_blank: true, class: "custom-select" %>
+    <%= submit_tag "Filter", class: "btn btn-primary" %>
+  <% end %>
+</div>
+
+
 <div class="row">
   <%= render partial: "project", collection: @projects, locals: {show_user: true} %>
 </div>  

@@ -3,7 +3,11 @@ class ProjectsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @projects = Project.all
+    if !params[:genre].blank?
+      @projects = Project.joins(:project_genres).where(:project_genres => {:genre_id => params[:genre]})
+    else
+      @projects = Project.all
+    end
   end
 
   def show
