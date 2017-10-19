@@ -1,0 +1,9 @@
+<% if project.progress_bar? %>
+  <div class="progress">
+    <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+    aria-valuenow="<%= project.percent_complete_integer %>" aria-valuemin="0" aria-valuemax="100" style="width:<%= project.percent_complete_integer %>%"></div>
+  </div>
+  <span class="text-muted">
+    <%= project.percent_complete_rounded %>% complete
+  </span>
+<% end %>

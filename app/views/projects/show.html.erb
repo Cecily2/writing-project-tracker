@@ -1,35 +1,23 @@
 <div class="box">
-  <h1><%= @project.title %></h1>
-  <%= render @project.genres %>
-  <br><br>
-   <div class="stats-box">
+    <h1><%= @project.title %></h1>
+    <%= render @project.genres %>
+    <br><br>
+    <div class="stats-box">
         <div class="container stats">
             <div class="row">
-              <%= show_stat(@project.hours, "hours") %>
-              <%= show_stat(@project.words, "current words") %>                    
-              <%= show_stat(@project.word_goal, "word goal") %>                    
+                <%= show_stat(@project.hours, "hours") %>
+                <%= show_stat(@project.words, "current words") %>                    
+                <%= show_stat(@project.word_goal, "word goal") %>                    
             </div>
         </div>
-
-        <% if @project.progress_bar? %>
         <br>
-        <div class="progress">
-            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
-            aria-valuenow="<%= @project.percent_complete_integer %>" aria-valuemin="0" aria-valuemax="100" style="width:<%= @project.percent_complete_integer %>%">
-            <%= @project.percent_complete_rounded %>%
-            </div>
-        </div>
-        <% end %>
-
+        <%= render partial: "projects/progress_bar", locals: {project: @project} %>
     </div>
-
-  <hr>
-
-  <%= @project.description %><br><br>  
-
-  <%= link_to "View updates for this project", project_progress_updates_path(@project), class: "btn btn-primary" %>
-  <%= link_to "Add project update", new_project_progress_update_path(@project), class: "btn btn-primary" if can? :create, @project => ProgressUpdate %>
-  <br><br>
+    <hr>
+    <%= @project.description %><br><br>  
+    <%= link_to "View updates for this project", project_progress_updates_path(@project), class: "btn btn-primary" %>
+    <%= link_to "Add project update", new_project_progress_update_path(@project), class: "btn btn-primary" if can? :create, @project => ProgressUpdate %>
+    <br><br>
 
     <div class="row align-items-center">
       <div class="col">

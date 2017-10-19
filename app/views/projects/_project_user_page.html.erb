@@ -1,23 +1,16 @@
 <div class="col-12 col-md-6">
     <div class="user-project">
         <h3><%= link_to project.title, project_path(project) %></h3>
-
         
         <% if project.progress_updates.count > 0 %>
           <a href="<%= project_progress_updates_path(project) %>"><%= pluralize(project.progress_updates.count, "update") %></a>
           <br>
-          <% end %>
+        <% end %>
           
-          <%= render project.genres %>
-  
-          <% if project.progress_bar? %>
-          <div class="progress">
-              <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
-              aria-valuenow="<%= project.percent_complete_integer %>" aria-valuemin="0" aria-valuemax="100" style="width:<%= project.percent_complete_integer %>%">
-              <%= project.percent_complete_rounded %>%
-              </div>
-          </div>
-          <% end %>
-          
+        <%= render project.genres %><br>
+        <%= text_word_goal(project) %>        
+        
+        <%= render partial: "projects/progress_bar", locals: {project: project} %>          
+
     </div>
   </div>
