@@ -8,8 +8,6 @@ class User < ApplicationRecord
   has_many :progress_updates
   has_many :comments
   has_many :commented_updates, as: :progress_updates, through: :comments
-  has_many :user_genres
-  has_many :genres, through: :user_genres
 
   validates :name, presence: true
 
@@ -31,6 +29,14 @@ class User < ApplicationRecord
     end      
   end
 
+  def genres
+    self.projects.map do |p|
+      p.genres.map do |g|
+        g
+      end
+    end.flatten.uniq
+  end
+
   def possessive_pronoun
     if self.gender == "female"
       "her"
@@ -48,5 +54,9 @@ class User < ApplicationRecord
   def words_written
     self.projects.map {|p| p.words}.compact.sum
   end  
+
+  def self.most_words_written
+    
+  end
 
 end
