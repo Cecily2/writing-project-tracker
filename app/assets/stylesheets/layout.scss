@@ -141,6 +141,13 @@ body {
   @extend .is-invalid;
 }
 
+.delete-comment {
+  background: #fafafa;
+  padding: 2px;
+  border-radius: 2px;
+  float: right;
+}
+
 @media (min-width: 576px) {
   .container-width {
       max-width: 540px;
