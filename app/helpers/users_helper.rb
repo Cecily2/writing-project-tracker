@@ -5,6 +5,16 @@ module UsersHelper
     end
   end
 
+  def possessive_pronoun(user)
+    if user.gender == "female"
+      "her"
+    elsif user.gender == "male"
+      "his"
+    else
+      "their"
+    end
+  end
+
   def genres_h3(user)
     if user.genres
       content_tag(:h3, "#{user.name}'s genres")
