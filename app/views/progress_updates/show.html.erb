@@ -1,37 +1,9 @@
 <div class="box">
-    <div class="media">
-        <%= image_tag(@update.user.avatar.thumb.url, :class => "d-flex mr-3 avatar-small") %>
-        <div class="media-body">
-            <strong><%= link_to @update.user.name, user_path(@update.user) %></strong>
-            posted an update for their project <%= link_to @update.project.title, project_path(@update.project) %>
-            <br>
-            <span class="text-muted"><%= time_ago_in_words(@update.created_at) %> ago</span>
-             <br>
-            <br>
-            <%= @update.content %>
-        </div>
-    </div>
-
-    <div class="container stats">
-        <div class="row">
-            <% if @update.words != nil %>
-                <div class="col">
-                    <span><%= @update.words %></span>               
-                    words added
-                </div>
-            <% end %>
-            <% if @update.hours != nil %>
-            <div class="col">
-               <span><%= @update.hours %></span>
-               hours worked
-            </div>
-            <% end %>
-        </div>
-    </div>
-<br>
+    <%= render partial: "progress_updates/progress_update_content", locals: {progress_update: @update} %>
+    <br>
     <div class="footer">
         <br>
-        <ul class="list-unstyled"><%= render @update.comments.all %></ul>
+        <ul class="list-unstyled"><%= render @update.comments %></ul>
         
         <% if can? :create, Comment %>
           <h3>Add New Comment</h3>

@@ -9,10 +9,8 @@
         Time spent: <%= project.hours %> hours <br> 
         Word goal: <%= project.word_goal %><br>      
         
-        Genres: <% project.genres.each do |g| %>
-          <%= g.name %> 
-        <% end %>
-
+        Genres: <%= render project.genres %>
+        
         <% if project.progress_bar? %>
         <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"

@@ -3,11 +3,9 @@
     <div class="media-body">
       <%= comment.content %><br>
       <small class="text-muted">
-         <%= link_to comment.user.name, user_path(comment.user) %> - <%= time_ago_in_words(comment.created_at) %> ago
-         
-        <% if can? :destroy, comment %> 
-        - <%= link_to 'Delete Comment', [comment.progress_update.project, comment.progress_update, comment], method: :delete %>
-        <% end %>
+         <%= link_to comment.user.name, user_path(comment.user) %>
+          - <%= time_ago_in_words(comment.created_at) %> ago
+         <%= delete_comment_link(comment) %>
       </small>
            <br><br>      
     </div>

@@ -1,0 +1,19 @@
+<div class="media">
+    <%= image_tag(progress_update.user.avatar.thumb.url, :class => "d-flex mr-3 avatar-small") %>
+    <div class="media-body">
+        <strong><%= link_to progress_update.user.name, user_path(progress_update.user) %></strong>
+        posted an update for <%= progress_update.user.possessive_pronoun %> project <%= link_to progress_update.project.title, project_path(progress_update.project) %>
+        <br>
+        <span class="text-muted"><%= time_ago_in_words(progress_update.created_at) %> ago</span>
+         <br>
+        <br>
+        <%= progress_update.content %>
+    </div>
+</div>
+
+<div class="container stats">
+    <div class="row">
+        <%= show_stat(progress_update.words, "words added") %>
+        <%= show_stat(progress_update.hours, "hours worked") %>
+    </div>
+</div>

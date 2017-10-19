@@ -8,9 +8,7 @@
           <br>
           <% end %>
           
-          <% project.genres.each do |g| %>
-          <span class="badge badge-info"><%= g.name %></span>          
-          <% end %>
+          <%= render project.genres %>
   
           <% if project.progress_bar? %>
           <div class="progress">
