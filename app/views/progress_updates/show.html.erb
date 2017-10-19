@@ -14,7 +14,7 @@
             <br><br>  
         <% end %>
         
-        <%= link_to "Edit Update", [:edit, @update.project, @update], class: "btn btn-sm btn-primary"  if can? :update, @update %>
-        <%= link_to 'Delete Update', [@update.project, @update], method: :delete, class: "btn btn-sm btn-danger" if can? :destroy, @update %>
+        <%= edit_update_link(@update) %>
+        <%= delete_update_link(@update) %>
     </div>
 </div>
