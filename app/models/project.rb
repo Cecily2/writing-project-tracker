@@ -14,6 +14,12 @@ class Project < ApplicationRecord
     end
   end
 
+  def highest_word_count
+  end
+
+  def most_hours_spent
+  end
+
   def progress_bar?
     self.words && self.word_goal
   end
