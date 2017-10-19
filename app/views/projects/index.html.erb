@@ -4,7 +4,8 @@
 <div>
   <h3>Filter projects:</h3>
   <%= form_tag("/projects", method: "get") do %>
-    <%= select_tag "genre", options_from_collection_for_select(Genre.all, "id", "name"), include_blank: true, class: "custom-select" %>
+    <%= select_tag "genre", options_from_collection_for_select(@genres, "id", "name", params[:genre]), include_blank: true, class: "custom-select" %>
+    <%= select_tag "sort", options_for_select([['Newest First', 'newest'], ['Most Words', 'words'], ['Highest Word Goal', 'word_goal'], ['Most Hours', 'hours']], params[:sort]), include_blank: true, class: "custom-select" %>
     <%= submit_tag "Filter", class: "btn btn-primary" %>
   <% end %>
 </div>
