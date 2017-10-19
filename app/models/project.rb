@@ -18,6 +18,18 @@ class Project < ApplicationRecord
     self.joins(:project_genres).where(:project_genres => {:genre_id => genre})
   end
 
+  def self.order_by(items, sort_order)
+    if sort_order == "words"
+      items.order(words: :desc)
+    elsif sort_order == "word_goal"
+      items.order(word_goal: :desc)
+    elsif sort_order == "hours"
+      items.order(hours: :desc)
+    else
+      items.order(created_at: :desc)      
+    end
+  end
+
   def self.reached_goal
     self.where("words > word_goal")
   end

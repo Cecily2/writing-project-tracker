@@ -11,10 +11,7 @@ class ProjectsController < ApplicationController
     end
 
     if !params[:sort].blank?
-      @projects = @projects.order(created_at: :desc) if params[:sort] == "newest"
-      @projects = @projects.order(words: :desc) if params[:sort] == "words"
-      @projects = @projects.order(word_goal: :desc) if params[:sort] == "word_goal"
-      @projects = @projects.order(hours: :desc) if params[:sort] == "hours"
+      @projects = Project.order_by(@projects, params[:sort])
     end
   end
 
