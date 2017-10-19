@@ -19,7 +19,6 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     @project.user = current_user
     if @project.save
-      @project.genres.each {|g| g.users << current_user}
       flash[:success] = "Project created!"
       redirect_to project_path(@project)
     else
@@ -36,7 +35,6 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
     if @project.update(project_params)
-      @project.genres.each {|g| g.users << current_user}
       flash[:success] = "Project updated!"      
       redirect_to project_path(@project)
     else
