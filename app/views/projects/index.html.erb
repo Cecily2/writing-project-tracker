@@ -1,6 +1,5 @@
 <h2>Projects</h2>
 
-
 <div>
   <h3>Filter projects:</h3>
   <%= form_tag("/projects", method: "get") do %>
@@ -10,7 +9,6 @@
   <% end %>
 </div>
 
-
 <div class="row">
-  <%= render partial: "project", collection: @projects, locals: {show_user: true} %>
-</div>  
+  <%= render @projects %>
+</div>
