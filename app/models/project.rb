@@ -10,7 +10,7 @@ class Project < ApplicationRecord
   def genres_attributes=(genre_attributes)
     genre_attributes.values.each do |genre_attribute|
       genre = Genre.find_or_create_by(genre_attribute)
-      self.genres << genre
+      self.genres << genre unless genre_attribute[:name] == ""
     end
   end
 
