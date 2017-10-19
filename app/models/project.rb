@@ -14,6 +14,14 @@ class Project < ApplicationRecord
     end
   end
 
+  def self.by_genre(genre)
+    self.joins(:project_genres).where(:project_genres => {:genre_id => genre})
+  end
+
+  def self.reached_goal
+    self.where("words > word_goal")
+  end
+
   def highest_word_count
   end
 
