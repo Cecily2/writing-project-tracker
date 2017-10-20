@@ -15,18 +15,22 @@ class Project < ApplicationRecord
   end
 
   def self.by_genre(genre)
-    self.joins(:project_genres).where(:project_genres => {:genre_id => genre})
+    if genre != nil && genre != ""
+      self.joins(:project_genres).where(:project_genres => {:genre_id => genre})
+    else
+      self.all
+    end
   end
 
-  def self.order_by(items, sort_order)
+  def self.sort_order(sort_order)
     if sort_order == "words"
-      items.order(words: :desc)
+      order(words: :desc)
     elsif sort_order == "word_goal"
-      items.order(word_goal: :desc)
+      order(word_goal: :desc)
     elsif sort_order == "hours"
-      items.order(hours: :desc)
+      order(hours: :desc)
     else
-      items.order(created_at: :desc)      
+      order(created_at: :desc)      
     end
   end
 

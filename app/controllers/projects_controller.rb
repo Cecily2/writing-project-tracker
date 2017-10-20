@@ -1,22 +1,14 @@
 require 'pry'
 class ProjectsController < ApplicationController
   load_and_authorize_resource
+  before_action :current_project, only: [:destroy, :edit, :update, :show]
 
   def index
     @genres = Genre.all
-    if !params[:genre].blank?
-      @projects = Project.by_genre(params[:genre])
-    else
-      @projects = Project.all
-    end
-
-    if !params[:sort].blank?
-      @projects = Project.order_by(@projects, params[:sort])
-    end
+    @projects = Project.by_genre(params[:genre]).sort_order(params[:sort])
   end
 
   def show
-    @project = Project.find(params[:id])
   end
 
   def new
@@ -37,12 +29,10 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project = Project.find(params[:id])
     @project.genres.build
   end  
 
   def update
-    @project = Project.find(params[:id])
     if @project.update(project_params)
       flash[:success] = "Project updated!"      
       redirect_to project_path(@project)
@@ -53,13 +43,10 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project = Project.find(params[:id])
     @project.destroy
     flash[:success] = "Project deleted."
     redirect_to user_path(@project.user)
   end
-
-
 
 
   private
@@ -68,5 +55,8 @@ class ProjectsController < ApplicationController
     params.require(:project).permit(:title, :description, :word_goal, :words, :hours, :genre_ids => [], :genres_attributes => [:name])
   end
 
+  def current_project
+    @project = Project.find(params[:id])
+  end
 
 end
