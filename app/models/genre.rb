@@ -3,5 +3,6 @@ class Genre < ApplicationRecord
   has_many :projects, through: :project_genres
 
   validates :name, presence: true
+  validates :name, uniqueness: true
   
 end
