@@ -1,7 +1,7 @@
 module UsersHelper
   def about_user(user)
     if user.about
-      content_tag(:p, user.about)
+      content_tag(:p, user.about, class: "about-user")
     end
   end
 

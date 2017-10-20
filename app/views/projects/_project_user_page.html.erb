@@ -7,7 +7,7 @@
           <br>
         <% end %>
           
-        <%= render project.genres %><br>
+        <div><%= render project.genres %></div>
         <%= text_word_goal(project) %>        
         
         <%= render partial: "projects/progress_bar", locals: {project: project} %>          
