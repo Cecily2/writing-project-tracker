@@ -32,6 +32,10 @@ body {
   }
 }
 
+.box-index {
+  margin-bottom: 20px;
+}
+
 h1 {
   font-size: 50px;
   margin-top: -10px;
@@ -182,6 +186,9 @@ h1 .btn, h2 .btn, h3 .btn {
   .box {
     padding: 30px;
   }
+  .box-index {
+    margin-bottom: 30px;
+  }
   .avatar-small {
     width: 75px;
     height: 75px;
@@ -192,6 +199,10 @@ h1 .btn, h2 .btn, h3 .btn {
 @media (min-width: 700px) {
   .container-width {
       max-width: 80%;
+  }
+
+  .box-index {
+    margin-bottom: 40px;
   }
 }
 
