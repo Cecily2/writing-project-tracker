@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Bree+Serif');
+
 @import "bootstrap";
 $heading-font: Helvetica, sans-serif;
 $body-font: Helvetica, sans-serif;
@@ -30,6 +32,12 @@ body {
   }
 }
 
+h1 {
+  font-size: 50px;
+}
+h1, h2, h3, h4 {
+  font-family: "Bree Serif"
+}
 
 .box-index {
   margin: 40px 0;
@@ -91,15 +99,19 @@ body {
 }
 
 .stats {
+  font-family: 'Bree Serif';
   text-align: center;
-  color: #666;
+  color: rgb(102, 102, 102);
   line-height: 1;
   margin-top: 10px;
   span {
     display: block;
-    font-size: 50px;
-    font-weight: bold;
+    font-size: 45px;
   }
+}
+
+.navbar-brand {
+  font-family: 'Bree Serif'
 }
 
 .box .footer {
