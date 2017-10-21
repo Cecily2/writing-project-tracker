@@ -1,24 +1,17 @@
-# README
+# Writing Progress Tracker
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Description
 
-Things you may want to cover:
+This application keeps track of writing projects. Users can add projects and add progress updates about their projects, or view other users' projects and updates.
 
-* Ruby version
+## Installation
 
-* System dependencies
+After cloning this reposithory to your computer, create an .env file with your `FACEBOOK_KEY` and `FACEBOOK_SECRET`. Run `bundle install`, then `rails db:migrate`, then `rails s`. View in your browser at `localhost:3000`.
 
-* Configuration
+# Contributing
 
-* Database creation
+Bug reports are welcome through GitHub at https://github.com/Cecily2/writing-project-tracker.
 
-* Database initialization
+# License
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This project is licenced under the MIT Licence.
