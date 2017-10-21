@@ -1,9 +1,11 @@
 <div class="col-12 col-md-6"> 
-  <div class="box">
+  <div class="<%= project_class(user_page) %>">
       <h3><%= link_to project.title, project_path(project) %></h3>
-        Time spent: <%= project.hours %> hours <br> 
-        Word goal: <%= project.word_goal %><br>      
-        Genres: <%= render project.genres %>
-        <%= render partial: "projects/progress_bar", locals: {project: project} %>    
-      </div>
+        <div><%= render project.genres %></div>
+        <% if user_page == false %>
+            <div>Created by <%= link_to project.user.name, user_path(project.user) %></div>
+        <% end %>
+        <%= text_word_goal(project) %>        
+        <%= render partial: "projects/progress_bar", locals: {project: project} %>            
+  </div>
 </div>

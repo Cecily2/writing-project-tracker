@@ -14,5 +14,5 @@
 </div>
 
 <div class="row">
-  <%= render @projects %>
+    <%= render partial: "projects/project", collection: @projects, locals: {user_page: false} %>
 </div>

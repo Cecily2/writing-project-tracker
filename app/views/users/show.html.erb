@@ -19,7 +19,7 @@
 
     <h3><%= @user.name %>'s Projects   <%= add_project_link(@user) %></h3>
     <div class="row">
-       <%= render partial: "projects/project_user_page", collection: @user.projects, as: :project %>
+       <%= render partial: "projects/project", collection: @user.projects, locals: {user_page: true} %>
     </div>
     <a href="/users/<%=@user.id%>/updates" class="btn btn-primary">View all updates from this user</a>
 </div>

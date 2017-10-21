@@ -1,5 +1,5 @@
 <h2>Projects that have reached their word goal</h2>
 
 <div class="row">
-  <%= render @projects %>
+  <%= render partial: "projects/project", collection: @projects, locals: {user_page: false} %>
 </div>
