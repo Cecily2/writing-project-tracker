@@ -1,11 +1,15 @@
 require 'pry'
 class ProjectsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:reached_goal]
   before_action :current_project, only: [:destroy, :edit, :update, :show]
 
   def index
     @genres = Genre.all
     @projects = Project.by_genre(params[:genre]).sort_order(params[:sort])
+  end
+
+  def reached_goal
+    @projects = Project.reached_goal
   end
 
   def show
