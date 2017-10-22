@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :projects
   has_many :progress_updates
   has_many :comments
-  has_many :commented_updates, as: :progress_updates, through: :comments
+  has_many :commented_updates, through: :comments, source: :progress_update
 
   validates :name, presence: true
 
