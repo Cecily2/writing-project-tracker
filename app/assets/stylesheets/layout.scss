@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Bree+Serif');
 
 @import "bootstrap";
-$heading-font: Helvetica, sans-serif;
-$body-font: Helvetica, sans-serif;
+$heading-font: "Bree Serif", sans-serif;
+$body-font: "Helvetica", sans-serif;
 $background-color: #fafafa;
 $border-color: #ccc;
 
@@ -13,11 +13,14 @@ body {
   padding: 0;
 }
 
-.navstyle {
-  background: #ffffff;
-  border-bottom: 1px solid $border-color;
+/* Site title */
+.navbar-brand {
+  font-family: $heading-font;
+  font-size: 30px;
+  margin-top: -5px;
 }
 
+/* Boxes */
 .box {
   background: #ffffff;
   border: 1px solid $border-color;
@@ -25,49 +28,33 @@ body {
   padding: 20px;
   box-shadow: 0px 1px 2px rgba(0,0,0,0.1);
   margin: 15px 0;
-
-  h2 {
-    margin: 0 0 10px;
-    color: #666;
-  }
 }
-
 .box-index {
   margin-bottom: 20px;
 }
+.user-project {
+  background: rgb(238, 238, 238);
+  padding: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
 
+/* Headings */
 h1 {
   font-size: 50px;
   margin-top: -10px;
 }
-
 h1, h2, h3, h4 {
-  font-family: "Bree Serif"
+  font-family: $heading-font;
 }
 
-h1 .btn, h2 .btn, h3 .btn {
-  font-family: "Helvetica", sans-serif;
-}
-
-.about-user {
-  margin-top: 15px;
-}
-
-.update-info {
-  height: 45px;  
-}
-
-.update-info-text {
-  line-height: 1.1;
-  vertical-align: middle;
-}
-
+/* User avatars */
 .avatar-xs {
   border-radius: 50%;
   width: 40px;
   height: 40px;
 }
-
 .avatar-small {
   border-radius: 50%;
   width: 60px;
@@ -76,16 +63,6 @@ h1 .btn, h2 .btn, h3 .btn {
   margin-right: 10px;
   margin-bottom: 10px;
 }
-
-.avatar-medium {
-  border-radius: 50%;
-  width: 80px;
-  height: 80px;
-  float: left;
-  margin-right: 20px;
-  margin-bottom: 10px;
-}
-
 .avatar-profile {
   border-radius: 50%;
   width: 200px;
@@ -94,22 +71,13 @@ h1 .btn, h2 .btn, h3 .btn {
   margin: 0 auto;
 }
 
+/* User/project/update stats styling */
 .stats-box {
   clear: both;
   padding: 10px 0 20px 0;
 }
-
-.collection-select .check-boxes label {
-  margin: 0 15px 0 3px;
-  color: #666;
-}
-
-.delete-link {
-  color: red;
-}
-
 .stats {
-  font-family: 'Bree Serif';
+  font-family: $heading-font;
   text-align: center;
   color: rgb(102, 102, 102);
   line-height: 1;
@@ -120,51 +88,21 @@ h1 .btn, h2 .btn, h3 .btn {
   }
 }
 
-.navbar-brand {
-  font-family: 'Bree Serif';
-  font-size: 30px;
-  margin-top: -5px;
-}
-
-.box .footer {
-  border-top: 1px solid rgb(226, 226, 226);
-  margin: 10px 0 0 0;
-  padding: 10px 0 0 0;
-  font-size: 14px;
-}
-
-.user-project {
-  background: rgb(238, 238, 238);
-  padding: 20px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-}
-
-
-.flash {
-  @extend .alert;
-}
-
-.error {
-  @extend .alert-danger;
-  margin-top: 20px;
-}
-
-.success {
-  @extend .alert-success;
-  margin-top: 20px;
-}
-
-.notice, .alert {
-  @extend .alert-primary;
-  margin-top: 20px;
-}
-
+/* Forms */
 .field_with_errors input, .field_with_errors textarea {
   @extend .is-invalid;
 }
+.collection-select .check-boxes label {
+  margin: 0 15px 0 3px;
+  color: #666;
+}
 
+/* Buttons next to headings */
+h1 .btn, h2 .btn, h3 .btn {
+  font-family: $body-font;
+}
+
+/* Progress Update show page */
 .delete-comment {
   background: #fafafa;
   padding: 2px;
@@ -172,6 +110,29 @@ h1 .btn, h2 .btn, h3 .btn {
   float: right;
 }
 
+/* User show page */
+.about-user {
+  margin-top: 15px;
+}
+
+/* Flash Messages */
+.flash {
+  @extend .alert;
+}
+.error {
+  @extend .alert-danger;
+  margin-top: 20px;
+}
+.success {
+  @extend .alert-success;
+  margin-top: 20px;
+}
+.notice, .alert {
+  @extend .alert-primary;
+  margin-top: 20px;
+}
+
+/* Media Queries */
 @media (min-width: 500px) {
   .avatar-profile {
     float: right;  
@@ -195,12 +156,10 @@ h1 .btn, h2 .btn, h3 .btn {
   }
 }
 
-
 @media (min-width: 700px) {
   .container-width {
       max-width: 80%;
   }
-
   .box-index {
     margin-bottom: 40px;
   }
