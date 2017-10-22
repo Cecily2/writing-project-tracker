@@ -1,6 +1,6 @@
 <div class="col-12 col-md-6">
     <div class="box">
-      <img src="<%= user.avatar.thumb.url %>" alt="" class="avatar-medium">
+      <img src="<%= user.avatar.thumb.url %>" alt="" class="avatar-small">
         <h3><%= link_to user.name, user_path(user) %></h3>
           Projects: <%= user.projects.count %><br>
           Updates: <%= user.progress_updates.count %>           

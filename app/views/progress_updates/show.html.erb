@@ -1,20 +1,17 @@
 <div class="box">
     <%= render partial: "progress_updates/progress_update_content", locals: {progress_update: @update} %>
-    <br>
-    <div class="footer">
-        <br>
-        <ul class="list-unstyled"><%= render @update.comments %></ul>
-        
-        <% if can? :create, Comment %>
-          <h3>Add New Comment</h3>
-            <%= form_for [@update.project, @update, @comment] do |f| %>
-              <%= f.text_area :content, class: "form-control" %><br>
-              <%= f.submit "Add Comment", class: "btn btn-primary" %>
-            <% end %>
-            <br><br>  
+    <hr><br>
+    <ul class="list-unstyled"><%= render @update.comments %></ul>
+    
+    <% if can? :create, Comment %>
+        <h3>Add New Comment</h3>
+        <%= form_for [@update.project, @update, @comment] do |f| %>
+            <%= f.text_area :content, class: "form-control" %><br>
+            <%= f.submit "Add Comment", class: "btn btn-primary" %>
         <% end %>
-        
-        <%= edit_update_link(@update) %>
-        <%= delete_update_link(@update) %>
-    </div>
+        <br><br>  
+    <% end %>
+    
+    <%= edit_update_link(@update) %>
+    <%= delete_update_link(@update) %>
 </div>
