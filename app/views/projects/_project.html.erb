@@ -5,7 +5,8 @@
         <% if user_page == false %>
             <div>Created by <%= link_to project.user.name, user_path(project.user) %></div>
         <% end %>
-        <%= text_word_goal(project) %>        
+        <div><%= text_hours(project) %></div>
+        <div><%= text_word_goal(project) %></div>       
         <%= render partial: "projects/progress_bar", locals: {project: project} %>            
   </div>
 </div>
