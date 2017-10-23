@@ -8,19 +8,20 @@ class Project < ApplicationRecord
   validates :title, presence: true
 
   def genres_attributes=(genre_attributes)
-    if genre_attributes[:name] != ""
       genre_attributes.values.each do |genre_attribute|
-        genre = Genre.find_or_create_by(genre_attribute)
-        self.genres << genre
+        if genre_attribute[:name] != ""
+          
+          genre = Genre.find_or_create_by(genre_attribute)
+          self.genres << genre
+        end
       end
-    end
   end
 
   def self.by_genre(genre)
     if genre != nil && genre != ""
-      self.joins(:project_genres).where(:project_genres => {:genre_id => genre})
+      joins(:project_genres).where(:project_genres => {:genre_id => genre})
     else
-      self.all
+      all
     end
   end
 
@@ -37,15 +38,15 @@ class Project < ApplicationRecord
   end
 
   def self.reached_goal
-    self.where("words > word_goal")
+    where("words > word_goal")
   end
 
   def progress_bar?
-    self.words && self.word_goal
+    words && word_goal
   end
 
   def percent_complete
-    self.words.to_f / self.word_goal.to_f * 100
+    words.to_f / word_goal.to_f * 100
   end
 
   def percent_complete_rounded
