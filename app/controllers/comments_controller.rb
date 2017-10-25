@@ -23,7 +23,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:content, :progress_update_id)
+    params.require(:comment).permit(:content)
   end
 
   def current_update
