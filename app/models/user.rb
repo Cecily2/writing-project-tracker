@@ -15,6 +15,13 @@ class User < ApplicationRecord
 
   enum role: [:normal, :admin, :guest]
 
+    has_and_belongs_to_many :friendships,
+       class_name: "User", 
+       join_table:  :friendships, 
+       foreign_key: :user_id, 
+       association_foreign_key: :friend_user_id
+
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
