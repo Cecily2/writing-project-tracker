@@ -9,10 +9,9 @@ class Project < ApplicationRecord
 
   def genres_attributes=(genre_attributes)
       genre_attributes.values.each do |genre_attribute|
-        if genre_attribute[:name] != ""
-          
+        if genre_attribute[:name] != ""          
           genre = Genre.find_or_create_by(genre_attribute)
-          self.genres << genre
+          self.project_genres.build(genre: genre)
         end
       end
   end
