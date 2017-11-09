@@ -14,8 +14,6 @@ class CommentsController < ApplicationController
 
   def destroy
     Comment.find(params[:id]).destroy
-    flash[:success] = "Comment deleted!"
-    redirect_to project_progress_update_path(@update.project, @update)
   end
 
   private

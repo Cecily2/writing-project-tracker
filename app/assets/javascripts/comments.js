@@ -25,13 +25,31 @@ Comment.prototype.format = function(){
 $(function(){
     $(".new_comment").on("submit", function(e) {
 
+        e.preventDefault()
+
         $.post(this.action, $(this).serialize(), function(comment) {
             let newComment = new Comment(comment)
             let newCommentHTML = newComment.format()
             $(".list-unstyled").append(newCommentHTML)
             $("#comment_content").val("")
         })
-
-        e.preventDefault()
     })
+
+    $(".delete-comment").click(function(e) {
+        e.stopImmediatePropagation()
+        e.preventDefault()
+
+        let commentId = this.getAttribute("data-comment-id")
+
+        $.ajax({
+            type: 'DELETE',
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},   
+            url: this.href,
+            success: function(e) {
+                $("#comment-" + commentId).remove()
+            }
+        });
+    })
+
+
 })
