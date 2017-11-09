@@ -6,11 +6,9 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.build(comment_params)
     @comment.progress_update = @update
     if @comment.save
-      flash[:success] = "Comment added!"
-      redirect_to project_progress_update_path(@update.project, @update)
+      render json: @comment
     else
-      flash[:error] = "Couldn't create comment."
-      redirect_to project_progress_update_path(@update.project, @update)
+      render json: @comment.errors.full_messages
     end
   end
 
