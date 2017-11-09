@@ -1,27 +1,26 @@
 function Comment(comment){
     this.id = comment.id
     this.content = comment.content
-    // TO DO: get username and user avatar info?
+    this.user = {
+        name: comment.user.name,
+        gender: comment.user.gender,
+        id: comment.user.id,
+        avatar: comment.user.avatar.thumb.url
+    }
 }
 
 Comment.prototype.format = function(){
-
-
-/* <li class="media">
-    <img class="d-flex mr-3 avatar-xs" src="<%= comment.user.avatar.thumb.url %>">
+    return `<li class="media">
+    <img class="d-flex mr-3 avatar-xs" src="${this.user.avatar}">
     <div class="media-body">
-      <%= comment.content %><br>
+      ${this.content}<br>
       <small class="text-muted">
-         <%= link_to comment.user.name, user_path(comment.user) %>
-          - <%= time_ago_in_words(comment.created_at) %> ago
-         <%= delete_comment_link(comment) %>
+        <a href="/users/${this.user.id}">${this.user.name}</a>
+          - Just now
       </small>
       <br><br>      
     </div>
-</li> */
-
-return `<li class="media"><div class="media-body">${this.content}</div></li>`
-    
+    </li>`   
 }
 
 $(function(){
