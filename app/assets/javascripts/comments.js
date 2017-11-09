@@ -3,7 +3,6 @@ function Comment(comment){
     this.content = comment.content
     this.user = {
         name: comment.user.name,
-        gender: comment.user.gender,
         id: comment.user.id,
         avatar: comment.user.avatar.thumb.url
     }
