@@ -18,7 +18,7 @@
 
 <div class="text-muted"><em>Browse updates for this project:</em></div>
 <div class="row">
-    <div class="col prev">
+    <div class="col previous">
         <% if @update.prev %>
             <%= link_to 'Previous', project_progress_update_path(@update.project, @update.prev), class: "next-prev-link" %>        
         <% end %>
