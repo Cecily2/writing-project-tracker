@@ -34,4 +34,13 @@ class ProgressUpdate < ApplicationRecord
     self.errors.full_messages.join(". ") + "."
   end
 
+
+  def next
+    project.progress_updates.where("id > ?", id).order("id ASC").first
+  end
+
+  def prev
+    project.progress_updates.where("id < ?", id).order("id DESC").first
+  end
+
 end
