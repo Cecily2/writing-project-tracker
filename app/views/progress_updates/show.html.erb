@@ -11,11 +11,21 @@
         <% end %>
         <br><br>  
     <% end %>
-    
-    <%= link_to 'next', project_progress_update_path(@update.project, @update.next) if @update.next %>
-    <%= link_to 'prev', project_progress_update_path(@update.project, @update.prev) if @update.prev %>
-    <br>
-    
+
     <%= edit_update_link(@update) %>
     <%= delete_update_link(@update) %>
+</div>
+
+<div class="text-muted"><em>Browse updates for this project:</em></div>
+<div class="row">
+    <div class="col">
+        <% if @update.prev %>
+            <%= link_to 'Previous', project_progress_update_path(@update.project, @update.prev), class: "next-prev-link" %>        
+        <% end %>
+    </div>
+    <div class="col text-right">
+        <% if @update.next %>
+            <%= link_to 'Next', project_progress_update_path(@update.project, @update.next), class: "next-prev-link" %>    
+        <% end %>
+    </div>
 </div>
