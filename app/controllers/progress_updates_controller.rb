@@ -9,6 +9,12 @@ class ProgressUpdatesController < ApplicationController
 
   def show
     @comment = Comment.new
+
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @update, include: ['user', 'project', 'comments', 'comments.user'] }
+    end
+
   end
 
   def user_index
