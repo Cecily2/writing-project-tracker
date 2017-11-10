@@ -22,10 +22,12 @@ Comment.prototype.format = function(){
     </li>`   
 }
 
-$(function(){
-    $(".new_comment").on("submit", function(e) {
 
+$(document).on('turbolinks:load', function(){
+
+    $(".new_comment").on("submit", function(e) {
         e.preventDefault()
+        e.stopImmediatePropagation()        
 
         $.post(this.action, $(this).serialize(), function(comment) {
             let newComment = new Comment(comment)
