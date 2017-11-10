@@ -4,10 +4,11 @@
         <strong><%= link_to progress_update.user.name, user_path(progress_update.user) %></strong>
         posted an update for <%= possessive_pronoun(progress_update.user) %> project <%= link_to progress_update.project.title, project_path(progress_update.project) %>
         <br>
-        <span class="text-muted"><%= time_ago_in_words(progress_update.created_at) %> ago</span>
+        <span class="text-muted created-at"><%= time_ago_in_words(progress_update.created_at) %> ago</span>
          <br>
-        <br>
-        <%= progress_update.content %>
+        <div class="progress-update-content">
+            <%= progress_update.content %>
+        </div>
     </div>
 </div>
 
