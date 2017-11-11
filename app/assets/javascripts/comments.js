@@ -1,6 +1,7 @@
 function Comment(comment){
     this.id = comment.id
     this.content = comment.content
+    this.created_at = comment.created_at_in_words    
     this.user = {
         name: comment.user.name,
         id: comment.user.id,
@@ -11,6 +12,8 @@ function Comment(comment){
 Comment.prototype.deleteLink = function(){
     if(this.user.id == $("body").attr("data-userid")){
         return `<a class="delete-comment" data-comment-id="${this.id}" rel="nofollow" data-method="delete" href="${window.location.href}/comments/${this.id}">Delete Comment</a>`
+    } else {
+        return ""
     }
 }   
 
@@ -21,7 +24,7 @@ Comment.prototype.format = function(){
       ${this.content}<br>
       <small class="text-muted">
         <a href="/users/${this.user.id}">${this.user.name}</a>
-          - Just now
+          - ${this.created_at}
           ${this.deleteLink()}
       </small>
       <br><br>      
