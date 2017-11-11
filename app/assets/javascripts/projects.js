@@ -12,11 +12,15 @@ function Project(project){
 Project.prototype.hoursHTML = function(){
     if(this.hours){
         return `<div>Hours: ${this.hours}</div>` 
+    } else {
+        return ""
     }
 }
 Project.prototype.goalHTML = function(){
     if(this.wordGoal){
         return `<div>Word Goal: ${this.wordGoal}</div>`       
+    } else {
+        return ""
     }
 }
 Project.prototype.progressHTML = function(){
@@ -27,6 +31,8 @@ Project.prototype.progressHTML = function(){
         <span class="text-muted">
         ${this.percent}% complete
         </span>`
+    } else {
+        return ""
     }
 }
 Project.prototype.genresHTML = function(){
