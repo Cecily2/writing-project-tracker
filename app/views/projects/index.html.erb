@@ -3,16 +3,16 @@
 
 <div>
   <h3>Filter & sort projects:</h3>
-  <%= form_tag("/projects", method: "get") do %>
+  <%= form_tag("/projects", method: "get", class: "filter-form") do %>
     <%= select_tag "genre", options_from_collection_for_select(@genres, "id", "name", params[:genre]), include_blank: true, class: "custom-select" %>
     <%= select_tag "sort", options_for_select([['Newest First', 'newest'], ['Most Words', 'words'], ['Highest Word Goal', 'word_goal'], ['Most Hours', 'hours']], params[:sort]), include_blank: true, class: "custom-select" %>
-    <%= submit_tag "Filter", class: "btn btn-primary" %>
+    <%= submit_tag "Filter", class: "btn btn-primary filter-button" %>
   <% end %>
 </div>
 <div>
   Or, view <a href="/projects/reached_goal">projects that have reached their word goal</a>.
 </div>
 
-<div class="row">
+<div class="row project-index">
     <%= render partial: "projects/project", collection: @projects, locals: {user_page: false} %>
 </div>
