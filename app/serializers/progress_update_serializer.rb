@@ -2,7 +2,7 @@ class ProgressUpdateSerializer < ActiveModel::Serializer
   include ActionView::Helpers::DateHelper  
   attributes :id, :content, :words, :hours, :previous_link, :next_link, :created_at_in_words
   # belongs_to :user, serializer: ProgressUpdateUserSerializer
-  # belongs_to :project, serializer: ProgressUpdateProjectSerializer
+  belongs_to :project, serializer: ProgressUpdateProjectSerializer
   has_many :comments
 
   def created_at_in_words
