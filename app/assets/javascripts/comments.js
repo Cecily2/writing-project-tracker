@@ -8,6 +8,12 @@ function Comment(comment){
     }
 }
 
+Comment.prototype.deleteLink = function(){
+    if(this.user.id == $("body").attr("data-userid")){
+        return `<a class="delete-comment" data-comment-id="${this.id}" rel="nofollow" data-method="delete" href="${window.location.href}/comments/${this.id}">Delete Comment</a>`
+    }
+}   
+
 Comment.prototype.format = function(){
     return `<li class="media" id="comment-${this.id}">
     <img class="d-flex mr-3 avatar-xs" src="${this.user.avatar}">
@@ -16,32 +22,39 @@ Comment.prototype.format = function(){
       <small class="text-muted">
         <a href="/users/${this.user.id}">${this.user.name}</a>
           - Just now
-          <a class="delete-comment" data-comment-id="${this.id}" rel="nofollow" data-method="delete" href="${window.location.href}/comments/${this.id}" onClick="removeComment(${this.id})">Delete Comment</a>
+          ${this.deleteLink()}
       </small>
       <br><br>      
     </div>
     </li>`   
 }
 
-function removeComment(id){
-    $("#comment-" + id).remove()
-}
-
 $(document).on('turbolinks:load', function(){
-
     $(".new_comment").on("submit", function(e) {
         e.preventDefault()
         e.stopImmediatePropagation()        
+        // using .ajax instead of .post and including csrf token allows comments to be added after
+        // loading a new update with ajax
+        $.ajax({
+            type: 'POST',
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},   
+            url: this.action,
+            data: {
+                comment: {
+                   content: $("#comment_content").val()
+                }
+            },
+            success: function(comment) {
+                let newComment = new Comment(comment)
+                let newCommentHTML = newComment.format()
+                $(".list-unstyled").append(newCommentHTML)
+                $("#comment_content").val("")
+            }
+        });
 
-        $.post(this.action, $(this).serialize(), function(comment) {
-            let newComment = new Comment(comment)
-            let newCommentHTML = newComment.format()
-            $(".list-unstyled").append(newCommentHTML)
-            $("#comment_content").val("")
-        })
     })
 
-    $(".delete-comment").click(function(e) {
+    $(".list-unstyled").on('click', '.delete-comment', function(e){    
         e.stopImmediatePropagation()
         e.preventDefault()
         commentId = this.getAttribute("data-comment-id")
@@ -51,7 +64,7 @@ $(document).on('turbolinks:load', function(){
             beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},   
             url: this.href,
             success: function(e) {
-                removeComment(commentId)
+                $("#comment-" + commentId).remove()
             }
         });
     })
