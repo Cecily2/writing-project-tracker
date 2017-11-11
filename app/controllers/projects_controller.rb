@@ -6,6 +6,12 @@ class ProjectsController < ApplicationController
   def index
     @genres = Genre.all
     @projects = Project.by_genre(params[:genre]).sort_order(params[:sort])
+
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @projects }
+    end
+
   end
 
   def reached_goal
