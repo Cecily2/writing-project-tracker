@@ -12,7 +12,7 @@ class ProgressUpdatesController < ApplicationController
 
     respond_to do |format|
       format.html { render :show }
-      format.json { render json: @update, include: ['comments', 'comments.user'] }
+      format.json { render json: @update, include: ['project', 'comments', 'comments.user'] }
     end
 
   end
