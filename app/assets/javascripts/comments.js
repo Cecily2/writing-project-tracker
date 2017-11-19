@@ -50,8 +50,8 @@ $(document).on('turbolinks:load', function(){
                 }
             },
             success: function(comment) {
-                let newComment = new Comment(comment)
-                let newCommentHTML = newComment.format()
+                const newComment = new Comment(comment)
+                const newCommentHTML = newComment.format()
                 $(".list-unstyled").append(newCommentHTML)
                 $("#comment_content").val("")
             }

@@ -44,7 +44,7 @@ $(document).on('turbolinks:load', function(){
             e.preventDefault()
             $.get(this.href + ".json", function(data){
                 
-                let newUpdate = new Update(data)
+                const newUpdate = new Update(data)
                 $(".created-at").text(newUpdate.created_at)
                 $(".progress-update-content").text(newUpdate.content)
                 $(".next").html(newUpdate.linkHTML("next"))
@@ -56,8 +56,8 @@ $(document).on('turbolinks:load', function(){
 
                 $(".list-unstyled").html("")
                 newUpdate.comments.forEach(function(item){
-                    let comment = new Comment(item)
-                    let commentHTML = comment.format()
+                    const comment = new Comment(item)
+                    const commentHTML = comment.format()
                     $(".list-unstyled").append(commentHTML)
                 })
 

@@ -69,8 +69,8 @@ $(document).on('turbolinks:load', function(){
             $.get(this.action + ".json?" + $(this).serialize(), function(data){
                 $(".project-index").html("")
                 data.forEach(function(project){
-                    let newProject = new Project(project)
-                    newProjectHTML = newProject.projectHTML()
+                    const newProject = new Project(project)
+                    const newProjectHTML = newProject.projectHTML()
                     $(".project-index").append(newProjectHTML)                    
                 })
             })
