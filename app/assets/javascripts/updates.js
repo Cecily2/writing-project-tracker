@@ -1,37 +1,41 @@
-function Update(update){
-    this.id = update.id
-    this.content = update.content
-    this.words = update.words
-    this.hours = update.hours
-    this.created_at = update.created_at_in_words
-    this.previous_link = update.previous_link
-    this.next_link = update.next_link
-    this.project_id = update.project.id
-    this.comments = update.comments
+class Update {
+    constructor(update){
+        this.id = update.id
+        this.content = update.content
+        this.words = update.words
+        this.hours = update.hours
+        this.created_at = update.created_at_in_words
+        this.previous_link = update.previous_link
+        this.next_link = update.next_link
+        this.project_id = update.project.id
+        this.comments = update.comments
+    }
+
+    linkHTML(direction){
+        if(this[direction + "_link"]){
+            return `<a class="next-prev-link" href="${this[direction + "_link"]}" onClick="return false">${direction.charAt(0).toUpperCase() + direction.slice(1)}</a>`   
+        } else {
+            return ""
+        }
+    }
+
+    commentSubmitLink(){
+    return `/projects/${this.project_id}/updates/${this.id}/comments`
+    }
+
+    statsHTML(){
+        let template = ""
+        if(this.words){
+            template += `<div class="col"><span>${this.words}</span> words added</div>`
+        }
+        if(this.hours){
+            template += `<div class="col"><span>${this.hours}</span> hours worked</div>`
+        }
+        return template
+    }
+
 }
 
-Update.prototype.linkHTML = function(direction){
-    if(this[direction + "_link"]){
-        return `<a class="next-prev-link" href="${this[direction + "_link"]}" onClick="return false">${direction.charAt(0).toUpperCase() + direction.slice(1)}</a>`   
-    } else {
-        return ""
-    }
-}
-
-Update.prototype.commentSubmitLink = function(direction){
-   return `/projects/${this.project_id}/updates/${this.id}/comments`
-}
-
-Update.prototype.statsHTML = function(direction){
-    let template = ""
-    if(this.words){
-        template += `<div class="col"><span>${this.words}</span> words added</div>`
-    }
-    if(this.hours){
-        template += `<div class="col"><span>${this.hours}</span> hours worked</div>`
-    }
-    return template
-}
 
 $(document).on('turbolinks:load', function(){
     $("#next-prev-navigation").on('click', '.next-prev-link', function(e){    
