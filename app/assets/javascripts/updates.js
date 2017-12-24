@@ -20,7 +20,7 @@ class Update {
     }
 
     commentSubmitLink(){
-    return `/projects/${this.project_id}/updates/${this.id}/comments`
+        return `/projects/${this.project_id}/updates/${this.id}/comments`
     }
 
     statsHTML(){
@@ -51,8 +51,6 @@ $(document).on('turbolinks:load', function(){
                 $(".previous").html(newUpdate.linkHTML("previous"))
                 $(".stats .row").html(newUpdate.statsHTML()) 
                 $(".new_comment").attr('action', newUpdate.commentSubmitLink())                
-
-                // 3. Change edit and delete links if they're visible.
 
                 $(".list-unstyled").html("")
                 newUpdate.comments.forEach(function(item){

@@ -12,14 +12,14 @@ class Project {
 
     hoursHTML(){
         if(this.hours){
-            return `<div>Hours: ${this.hours}</div>` 
+            return `<div>Hours: ${this.hours}</div>`
         } else {
             return ""
         }
     }
     goalHTML(){
         if(this.wordGoal){
-            return `<div>Word Goal: ${this.wordGoal}</div>`       
+            return `<div>Word Goal: ${this.wordGoal}</div>`
         } else {
             return ""
         }
@@ -46,7 +46,7 @@ class Project {
     }
 
     projectHTML(){
-    return `<div class="col-12 col-md-6"> 
+    return `<div class="col-12 col-md-6">
         <div class="box">
             <h3><a href="/projects/${this.id}">${this.title}</a></h3>
             ${this.genresHTML()}
@@ -62,19 +62,21 @@ class Project {
 
 
 $(document).on('turbolinks:load', function(){
-    $(".filter-form").on('submit', function(e){    
-            e.stopImmediatePropagation()
-            e.preventDefault()
+    $(".filter-form").on('submit', function(e){
+        e.stopImmediatePropagation()
+        e.preventDefault()
 
-            $.get(this.action + ".json?" + $(this).serialize(), function(data){
-                $(".project-index").html("")
-                data.forEach(function(project){
-                    const newProject = new Project(project)
-                    const newProjectHTML = newProject.projectHTML()
-                    $(".project-index").append(newProjectHTML)                    
-                })
-            })
-
-        })
+        $.get(this.action + ".json?" + $(this).serialize(), renderProjects)
+    })
 
 })
+
+const renderProjects = projects => {
+    const renderedProjects = projects.map(project => {
+                                    const newProject = new Project(project)
+                                    return newProject.projectHTML()
+                                }).join("")
+    $(".project-index").html("")
+    $(".project-index").append(renderedProjects)
+
+}

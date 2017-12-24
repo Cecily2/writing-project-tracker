@@ -11,13 +11,13 @@ class ProgressUpdateSerializer < ActiveModel::Serializer
 
   def previous_link
     if prev_object = object.prev
-      "/projects/#{prev_object[:project_id]}/updates/#{prev_object.id}"
+      "/projects/#{prev_object.project_id}/updates/#{prev_object.id}"
     end
   end
 
   def next_link
     if next_object = object.next
-      "/projects/#{next_object[:project_id]}/updates/#{next_object.id}"
+      "/projects/#{next_object.project_id}/updates/#{next_object.id}"
     end
   end
 
